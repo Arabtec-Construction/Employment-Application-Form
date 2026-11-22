@@ -1,0 +1,1632 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Employment Application Form · Recruitment · Arabtec Workforce</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      :root {
+        --red: #dd1728;
+        --red-hover: #b71220;
+        --red-tint: #fef2f3;
+        --ink: #15181d;
+        --fg: #1a1f27;
+        --muted: #5b6472;
+        --subtle: #8a93a3;
+        --border: #e6e8ee;
+        --canvas: #f7f8fa;
+        --card: #ffffff;
+        --success: #15803d;
+        --on-ink: #ffffff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--canvas);
+        color: var(--fg);
+        font-family: Inter, system-ui, sans-serif;
+        font-size: 15px;
+        line-height: 1.75;
+      }
+      .rule {
+        height: 6px;
+        background: var(--red);
+      }
+      .topbar {
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+      }
+      .wrap {
+        max-width: 960px;
+        margin: 0 auto;
+        padding-inline: 24px;
+      }
+      .topbar .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 80px;
+      }
+      .topbar img {
+        height: 48px;
+        display: block;
+      }
+      .code {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--muted);
+        line-height: 1.3;
+        margin: 0 0 20px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 24px;
+        height: 2px;
+        background: var(--red);
+        flex: none;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "Inter Tight", Inter, sans-serif;
+        color: var(--fg);
+        margin: 0;
+      }
+      h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        line-height: 0.98;
+      }
+      h2 {
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+      }
+      h1 .dot,
+      h2 .dot {
+        color: var(--red);
+      }
+      .hero {
+        padding: 64px 0 32px;
+      }
+      .hero p {
+        max-width: 60ch;
+        color: var(--muted);
+        margin: 24px 0 0;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+      .card .head {
+        margin-bottom: 32px;
+      }
+      .sub {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 12px 0 0;
+        line-height: 1.5;
+      }
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      }
+      .grid.w2 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+      .span2 {
+        grid-column: span 2;
+      }
+      @media (max-width: 560px) {
+        .span2 {
+          grid-column: auto;
+        }
+      }
+      .f {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        min-width: 0;
+      }
+      .f label,
+      .lbl {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--fg);
+        line-height: 1.4;
+      }
+      .rq {
+        color: var(--red-hover);
+      }
+      input[type="text"],
+      input[type="tel"],
+      input[type="date"],
+      select,
+      textarea {
+        font: inherit;
+        font-size: 15px;
+        height: 44px;
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--card);
+        color: var(--fg);
+        padding: 0 12px;
+        line-height: 1.4;
+      }
+      textarea {
+        height: auto;
+        min-height: 72px;
+        padding: 12px;
+        resize: vertical;
+      }
+      input[readonly] {
+        background: var(--canvas);
+        color: var(--muted);
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        outline: 2px solid var(--red);
+        outline-offset: 1px;
+        border-color: var(--red);
+      }
+      .f.invalid input,
+      .f.invalid select,
+      .f.invalid textarea,
+      .opts.invalid {
+        border-color: var(--red-hover);
+        background: var(--red-tint);
+      }
+      .err {
+        color: var(--red-hover);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+      .opts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .opt {
+        position: relative;
+      }
+      .opt input {
+        position: absolute;
+        opacity: 0;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        cursor: pointer;
+      }
+      .opt span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        height: 44px;
+        padding: 0 16px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--card);
+        font-size: 14px;
+        color: var(--fg);
+      }
+      .opt input:checked + span {
+        border-color: var(--fg);
+        background: var(--red-tint);
+        font-weight: 600;
+      }
+      .opt input:focus-visible + span {
+        outline: 2px solid var(--red);
+        outline-offset: 1px;
+      }
+      .rowset > .item {
+        padding-top: 24px;
+        margin-top: 24px;
+        border-top: 1px solid var(--border);
+      }
+      .rowset > .item:first-child {
+        padding-top: 0;
+        margin-top: 0;
+        border-top: 0;
+      }
+      .itemhead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 16px;
+      }
+      .itemhead .eyebrow {
+        margin: 0;
+      }
+      .btn {
+        font: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        height: 44px;
+        padding: 0 24px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--fg);
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .btn:hover {
+        background: var(--canvas);
+      }
+      .btn.primary {
+        background: var(--red);
+        border-color: var(--red);
+        color: var(--on-ink);
+      }
+      .btn.primary:hover {
+        background: var(--red-hover);
+        border-color: var(--red-hover);
+      }
+      .btn.ghost {
+        border-color: transparent;
+        background: transparent;
+        color: var(--muted);
+      }
+      .btn.ghost:hover {
+        background: var(--canvas);
+      }
+      .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .btn:focus-visible {
+        outline: 2px solid var(--red);
+        outline-offset: 2px;
+      }
+      .add {
+        margin-top: 24px;
+      }
+      .photo {
+        display: flex;
+        gap: 24px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .photo .box {
+        width: 112px;
+        height: 140px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--canvas);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        overflow: hidden;
+      }
+      .photo .box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .check {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        cursor: pointer;
+        font-size: 15px;
+      }
+      .check input {
+        width: 20px;
+        height: 20px;
+        margin: 4px 0 0;
+        accent-color: var(--red);
+        flex: none;
+      }
+      .actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 0 0 96px;
+      }
+      .note {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .status {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background: var(--card);
+        padding: 16px;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 24px;
+      }
+      .status.ok {
+        border-inline-start: 4px solid var(--success);
+      }
+      .status.bad {
+        border-inline-start: 4px solid var(--red);
+      }
+      .band {
+        background: var(--ink);
+        color: var(--on-ink);
+        padding: 64px 0;
+      }
+      .band .eyebrow {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .band p {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+        font-family: "Inter Tight", Inter, sans-serif;
+      }
+      .list .li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 0;
+        border-top: 1px solid var(--border);
+      }
+      .list .li:first-child {
+        border-top: 0;
+      }
+      .li b {
+        font-weight: 600;
+      }
+      .hidden {
+        display: none !important;
+      }
+      .sheetwrap {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 24px;
+        overflow-x: auto;
+      }
+
+      /* ---------- printable sheet ---------- */
+      .sheet {
+        width: 794px;
+        margin: 0 auto;
+        color: var(--ink);
+        font-family: Inter, Arial, sans-serif;
+        font-size: 10.5px;
+        line-height: 1.3;
+        background: var(--card);
+      }
+      .sheet .page {
+        width: 794px;
+        height: 1120px;
+        padding: 36px 44px 28px;
+        position: relative;
+        overflow: hidden;
+        background: var(--card);
+      }
+      .sheet .page.p1 {
+        page-break-after: always;
+      }
+      .sheet table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+      }
+      .sheet td,
+      .sheet th {
+        border: 1px solid var(--ink);
+        padding: 3px 6px;
+        vertical-align: top;
+        overflow-wrap: anywhere;
+      }
+      .sheet th {
+        font-size: 8.5px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        text-align: center;
+        vertical-align: middle;
+        padding: 4px 3px;
+      }
+      .sheet .lb {
+        font-size: 7.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--muted);
+      }
+      .sheet .vl {
+        font-size: 11px;
+        font-weight: 600;
+        min-height: 15px;
+        margin-top: 1px;
+      }
+      .sheet td.r {
+        height: 22px;
+        font-size: 10.5px;
+        font-weight: 500;
+      }
+      .sheet .sec {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin: 12px 0 3px;
+      }
+      .sheet .sec small {
+        font-weight: 400;
+        text-transform: none;
+        font-size: 8.5px;
+        letter-spacing: 0;
+        margin-inline-start: 8px;
+      }
+      .sheet .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .sheet .top img.logo {
+        height: 58px;
+        display: block;
+      }
+      .sheet .title {
+        font-family: "Inter Tight", Inter, sans-serif;
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        margin: 16px 0 10px;
+      }
+      .sheet .pos {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 3px 8px;
+        font-size: 10px;
+        align-items: end;
+      }
+      .sheet .pos .ln {
+        border-bottom: 1px solid var(--ink);
+        min-width: 260px;
+        height: 16px;
+        font-weight: 600;
+        font-size: 11px;
+      }
+      .sheet .ph {
+        width: 112px;
+        height: 140px;
+        border: 1px solid var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        color: var(--muted);
+        flex: none;
+        overflow: hidden;
+      }
+      .sheet .ph img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .sheet .cbw {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        margin-inline-end: 12px;
+        white-space: nowrap;
+      }
+      .sheet .cb {
+        width: 10px;
+        height: 10px;
+        border: 1px solid var(--ink);
+        display: inline-block;
+        flex: none;
+      }
+      .sheet .cb.on {
+        background: var(--ink);
+      }
+      .sheet .q {
+        margin: 9px 0 0;
+        font-size: 10.5px;
+      }
+      .sheet .q b {
+        font-weight: 600;
+      }
+      .sheet .ans {
+        border-bottom: 1px solid var(--ink);
+        min-height: 16px;
+        font-weight: 500;
+        margin-top: 3px;
+        padding-bottom: 1px;
+      }
+      .sheet .foot {
+        position: absolute;
+        left: 44px;
+        right: 44px;
+        bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 8px;
+        color: var(--muted);
+      }
+      .sheet .decl {
+        margin-top: 14px;
+        font-size: 10.5px;
+        line-height: 1.5;
+      }
+      .sheet .sig {
+        display: flex;
+        justify-content: flex-end;
+        gap: 40px;
+        margin-top: 44px;
+      }
+      .sheet .sig div {
+        width: 190px;
+        border-top: 1px solid var(--ink);
+        text-align: center;
+        padding-top: 3px;
+        font-size: 9.5px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      @media print {
+        body {
+          background: var(--card);
+        }
+        .noprint,
+        .rule,
+        .topbar,
+        .band {
+          display: none !important;
+        }
+        .sheetwrap {
+          border: 0;
+          padding: 0;
+          margin: 0;
+          overflow: visible;
+        }
+        .sheet {
+          zoom: 1 !important;
+        }
+        @page {
+          size: A4;
+          margin: 0;
+        }
+      }
+    img,svg,video,iframe,canvas{max-width:100%}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{padding-inline:16px}
+  .topbar .wrap{height:64px;gap:12px}
+  .topbar img{height:40px;width:auto;max-width:60vw;object-fit:contain}
+  .code{display:none}
+  .hero{padding:40px 0 24px}
+  .hero p{overflow-wrap:anywhere}
+  .card{padding:16px}
+  .card .head{margin-bottom:24px}
+  h2{font-size:24px}
+  input[type=text],input[type=tel],input[type=date],select,textarea{font-size:16px;min-height:44px}
+  .f label,.lbl{font-size:16px}
+  .sub,.note,.err,.status{font-size:16px}
+  .btn{min-height:44px;min-width:44px}
+  .actions{gap:12px}
+  .actions .btn{flex:1 1 100%}
+  .itemhead .btn{padding-inline:12px}
+  .opt span{min-height:44px;font-size:16px}
+  .check{min-height:44px;font-size:16px}
+  .check input{width:24px;height:24px;margin-top:2px}
+  .grid,.grid.w2{grid-template-columns:minmax(0,1fr)}
+  .span2{grid-column:auto}
+  .photo{gap:16px}
+  .sheetwrap{padding:8px}
+  .band{padding:48px 0}
+  .band p{font-size:20px;overflow-wrap:anywhere}
+  .list .li{flex-wrap:wrap}
+}
+</style>
+  </head>
+  <body>
+    <div class="rule noprint"></div>
+    <header class="topbar noprint">
+      <div class="wrap">
+        <img
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcIAAADrBAMAAAAI4os8AAAAMFBMVEX////Gt7avioTralK4bV/pYk3mYUvTYk3kXUnjWkffWUbLWEdKTlJCREc9P0I4OTzQt5R7AAAgdklEQVR42u192XMcx5nnL7NBCQRAdGY1LIkkjqpq0NYBEY2Dlg+JBEHQ54qERNITsRGW6PE8bsTu2DGxf8Q6PPM+sTI9uy9jWjzk8MMsQRKAfIyNvgBSlDlEVyXAUxK6KrtBQoCIytyHakAECRAg/cCCBt8D2ShUJ/KX3/3ll1XABm3QBm3QBm3QBm3QBm3QBm3QBm3QBv0nJQYCIPxn8b/o0qNPkJrEJErY0x/7EiB2vKwAimbXjSbCqkf+BueQAPfB/XCN4gCAUlR5SB+Z6Sa6lmN/jLEvCMIEgBSQXPzmKz8FYv+zP6BfFB7Gq3oyyVi/6FIhD6tMAMBXzFRHNBHGHnVFkn+XKVdvLV//xmXtzwKkO9fwmU9nxz+8Nffp7BeBhwznAORhC1UZ4G/FxJEU9sKuYl8EKSUdMZXoUNqvGFIADEEWAO2Y518IhOXOwy2AcuCkFi92MWCyYwwx9gVAyFHMC7p/h0mPhBYGd71Npqa2jS3Jdr7+EZLU36VAgEB4zo5WAMA/UNsEzHEzj7zB1j1Co4ub6DUHDx1iuCIW9JASCNq6U5tfAD18tjiYrwegRNm2Q67+k3KoGYxf+RlAYa13hKTONrlBA+/dTGfzCQCA/h9lc/zaPlsGMQZQts4RGkFeFbKOCMQmUyQqQslMACrWBW/9R22E/U0Hg+cAu5rHRe8CvxwN4TLA4GYUxfRRECZYesxIdtpdGJnUecyHV6dyjieUme+zYFDC1jXC+NNvMlmwFP3Sm8Gm/jMy9IeDu75d3zRm6oGc3NtB+HrOgGn/TYARwCt+otKdyYnwch9TsDqEiS57HljXPLRu9BcyaJVw2GSnFoV0eFk6DqUUTNoQmQhaU/oIyX0KrYfBCKNmbB8PaOuCLXWlUmYeYj7fh+jZmrUjNO4AExbqR/JFYhZie1EHACQGuqP/vT53BxspTLZH0CWuHSEj1rwGZKuN1hRa3FgrAOjh82g57sBRkhnWWURPE9eMkLxpQWipwdWuu/k88gtRaLsMhKloJ5KJeBIAX68Ijev9uor5xIi76RJQLwrjAEDmuXdyR9yJmSBBkIv14ym2PhESMwWd54E7fr5DX9gigJgEAF2l0XE3f+21n7efJju4nYycrVkzQqSFUtoF7TS6Pxu1Es3ZkFdaAob5yTkqdgq2z0CsrZetS4R8V5U6H5yTOcKQnrY7SaqqDwDQM3I8n+xSY437e90z45+cR8/guuQhMS/8qEk6EgoIHA3TTTb/DAAI6epi1GaxLa6/v7+BIxiOmJjStSb3P/RJolP0uAKbfuzgbJp2Vuo0VU3+cZRf2vTnUTGRgwIxo+US14aQNFTVn7vdJG0JDSDZYUJeCdWwqv4rHR1OtwnAMT0kaV9ntBzGGiNvliqURyS3lQVHZQSCTZ5XsUBnrnbaovej64aiDSlXqLMtWIc8NAiz671YtwWmqLHf7O5MuVhw+QFMijyg5qXt5ZEWqUiJKV3jjpo+YR9hmGht6s4Wx46cMlFKVNj/7c48bR7Y1LHfzA9QozuFiz2RsjVrQpj41k+0OEF7FdSO+JULzbRFqMLnv945aGpkBgoawkLsp22DoOsNoXEe9KdNAJh3tnDk7sivdTbRpUVFRaVOO9Ir5mRzVdZMg/qSJtn6Qki29AdnpuE4BuIXWm3jB50QRT+0NHoQwtOu0gIJBocGmbOCdb9mrS+Exv7JmJXZl7eAmA1mniUHkE+Y86HH9w51KXwJdke5y/vvQdKWVnLq/QjZmqq1OMNUGQySAMzrgSTQVf/g0OOpBVVMHtlyIYHmWKKX0H1FoXOx+iom1xFCXnd6z7lmFAB457rrqqhZyBp3pz+/YXx0y1Ptg0FpvPTaWLcBV1X1ZCyxjqT0S+ghhEECMA6bWhLmufa+7p78vS02QSF5CDBamZcjRnANJbZ+EBL2VZA952nDG9KFJ2Lnyfv9ySuDC/6+J+uIzqdePdacLe3TV12ZTHRmcRnRKZyujtCIpQij+wJ9cj6viQliBtMMwc8qvx4o22Y2B0u4WaeBSX3eZHDzMCOzl0hXZ2GKTTnH8+jQsQ5AC4b2MoAgTAP1Wc6hCoMp2pw5GZS48gixTdjRqUitamlI/yuwHYEEf4NQogu57n/6b8Pl2tihdxGay72IxwJZqPobQJf4J+0TVocAYeBinfTTGPbY887k17Yz7vJq3FIfvThVLYy9/m9RLwCQzeTk5stv3ihZbtPPP90x0pUd3fWLrU/Tp2+RiLTXrIaQfr3hzkfJF/CZpc69eKWcvjFBZ14wSsHzN+VNCQDP+B1fv/zMrZm5i9s+uDmX9PyaZ7MfxekLl1v0rXUhpUa5h6oywlSplbjWD0ppQLkQOuyoudJBHCbJK8307qYmsJFYb30XbT61BYazLiwNSRyRSkwdLwO0c1xclpwwW2ezyEGHaqgkgUn7mp0TEkoyjzCasmzYkBGJ3FaRUto+bX86N/ldUhp4bqtkf/lwny5dfGnz06M9HzoVNaPzd+Y6z4x98/kZf4J9vGO6QGq2Brdee/a5D02xDhAmqhNb5owXSHXNh4yVt5IatrlaycTzc/z6zQrC2S83NZe9v8xkE8/Nct3AShY+/WgrN+KfureiL6W06yd785BT0LTeIib4XgkwQI382l0IrbUwNYDAIQkAI3mz6GeEeY7wiGxDPZyHxvdr0aXnnpvgAIesvsno0yc7+U05u/OPi76A3PjsG07tU7Uv8huy7ju1hcIfap5ucemHfzo4K6LOQ2IanCMbx6+hDR/1MphIk6D8vxzp6M+zI082/Nto/VP7ps6DZaqa/S6zkMfYfBwos6jzkGx9tRpe7VZy52rLHCNk5vcfz2wrvTCLzc0n78n/yOy2Teq7NzO13ubqFwtz8T9C/8l+Vv/lQ1p/K+I8NKj0HKPZhWUSEAC73kzJ4ERfMK79e26TQQu96wiYSMERADUBx3UUFIm4lFLzjXEJQQPETDIvoKiSnOw1grzI3ZvC64Z8LJXv6GSCuY7OkTcE3oACkIyCrXmYlBqJtk4eJ9VZiwlew/QJqzb+Ea+Zn3BwaUnMWSL9jZcSqkbTamDzbEP1tu6Zb7375mUP7FaUeUgYdZxBytDpnzcl4Gtf+nzq1xPAnqVVmGL9xfPMbYhLVZSEwUQVzH+lMbPLjECP1MPi0v6GrGcoCiZAGJDlnCg/I2J7kVt6oxbdvvb9sA0s7MpspQnHORJsevIVqYfwMPG+6VzrDQY94nQAgExyZgQCwcD9COGnM2Zw/B1hJDSorTAPZ7InA3t63oqwHpKX91x+7pvxk9+du3a100lPWtVG1c+fyUoA8Q/vu3eWVO/8+o1Pv/+vm9zdbOY3m7Oz554VNzF14NOJJ54lrsxDAyXLGiEGQACenD9XLxGIROcu+gALof3Y3RNoFkGiK8s+mSTwiZmJ4QrGqiJsaRr0NKoOoxcwlMsZJEDNql7YaokzrIjplmupRG2e0r76Mzf6y4fQaR7RnV2w5i0WVYSkMdbDRoYAgOkcPNJbNkkCUDk8CBBawOjr3XFEiZ4sOFq5DduyzME3n/w21Ip62PD9jt9P9mdrzLnN7x5+7qPtp3vJ7OxLpnZqb9xYRrVK+wvvbv20c7Ltd/8Vl7/2xxahx75Xf2HP8PUn7hJXWmLSfj4fQ1UKEprCy9IuwjkHQD9WyzkAnUGzwGDP+TThHdw2gSnAmyB44n0LKyJ85e87gisqkwU01wJo9hwJQFiH48vdr8fzBgAoDAzkw2HP0U57LxIg0URoDN62jqTwzG4XwlK0kwSDmBpwHNB0btkvTATJHjSfs2FxrUEB4+4JV44DphlJPSSvfWerdvnY3s1TZZsN9rLJIGip2TbLt/6z95dlv6Fqrn8DY9+tD3YKYrMrt3ee/C+e5z5X0/fbJ1w4XcFf8alJy4crZT2xgA4f+PKzUxSF1nmsdGS79Nw8FASobY/ng5gLJOG0mgObXgry0UNIvvR0j0MsJQAKTcLgUgPQ9Vgp0CxOnS/HAU9AiYbdVJkgDNA55GkEpZT82PkGK3GerC7QYpmTOS4/HplJ8BdGTnkrGn/mG9XQ//607xBqqXOz1uysr7JTL2+/NTMbOYQJr/OKO91ylrKyxSSprkY81mHJucHvbfrjirMlfPrZhLO1qkeY5bl3Gr/Oz96c+9rJLoIbT9Ql0hU6hDL5qmZpM7C7E3xKQgDaKZBe5FfOhnyJwCn1jFC09tgxW8lE12HAI0+4u315hD1JUKs+X5+bygNwfaUBVwC1g3rloXRJAQ0V0eg0/XwHdwqUAYdgRk1KDfvA7cb41omvxJ4bfSl+y8DZr09Uz3J7duDSpYeo1GzTd2pTTm2Lq/K29gsX2qXo2sYxyz4t3YyaLb2w/9uXBTpozuzH2ZLef9ilcf947Cd/Vg9L2XUNu/jR4CuQyFgmNV+RW4LBIEtTJxV5gqn+sjysYV8fKiYxC+ujONHbts1yPYt///HNref8h860vG1m7uOtzGdzL9Z4f6ieeIo7M5JUMx9aRixq66IKQJDnmmgBYPxsJp+CziyTGS6xNaOHe+yWUudkr0Sxz06hYR9NNjt4ov37y0ppVdN4MWzDbznf42f1rlajeME+juwqrFDpwe2BoHuIyogmTSTOkIQ9JwC4UYu8Y7kv1Subd0jadJZRpl1iGWCxVSeq/yRTRSX3nu9rv0pQd6qDmUokJ1KRyy2qTGLu14PTVlwJJIPpLQKuCVzRq43mV8UIsQKfQMGD8UYeAknDfKJHhZZFOE+NyyeyUzmXKAmys9DQ7gMM8FezF7rgTTDosyybazGcIRNQDmwd9r9HCWEDM00KbViggGu0wnNaGWne4686nHc2H3chdEYqZ+Llk4DvC+VEL/KmvXXD8Rea4kzw7c+zwUM69vzks3Pj58Wqw83WvN784Tm9uX5ibmvqTx/08e2vCH/b07fiIlo8ZCc2daJBCclKjHxyDQDRJd23BoOovUHE6JuCKp0nJgi3kKsybTNyVYwATI+qlhyk1HTek/PndV6dWct4cu4dWEmTmFAEGB9w3gUAISOGUB7SJXi02cvEc8XRv82WihnbK+bWMk1dgsMGYRhEA2jtY6/8/bxwnmQb3/JxKf0krSiVWsbTrxbET951koOTTm4t42mv5Y4Z6/UybvP5NpOU6pnIAJARszSNvTPTm2c/8l96JXZz84etW/mLm5+O/25txmKWbK62N1fHs/L6KP/4a7/15WYfiJqlqcK0ZUIBOMfEjp6S3TKIvL+2AbXsyTMJH9jxRoIBvuRdXdGzNAxxkeg0M2ezAOcA0Xh1zYI2BMDPwu5I9O4lXQxU+4iapZmXwVm/KAwmzcz0nvPzkhzqzq51kt5UqpT2ErEuFJ35kyrZsJvwWNQsjfY2dcFBqYv4biBMBcrnc2sdUZfG+myYkiOT9HXmqf/4aLIjiFzkDdPitpowtP3jeJ4Jz2d/XrucFXfDpibjQSjhXYYqpyJXiTLg+0xLxmF0gMGZCk6ufUj97iBAKSARsw61U4XJJ6mHy/tDH+fa/7fVlzUY/I5Sd/1x/1Gm6Nepyw7VUhPCrlp0Lj+PyFX1mUzlUyWV7QKgfVrPMo+EMFOMqeazyT6tJeS4RkqwiEmpBpAwDeOw6UkCAA2PVIXQ+QtNeVcC3oB2c2as60kK6QreAsjvJRZcwlzKDZPcfbQp6mDHm7JzfiDnaeW1wkTk/GGVv0V7eS30oJ0+xbdkfnXi0WboyZxIZUaP8N4TncFgL4LISSkAkdUO0Cw77rqufOTkRw7kwRLozSPsUqmKnLcAWvvq8/MnANss5NL1j4rQY4GCda6QtYmhHJdARI2HEhrQBd08PpZ4DY8xP4G8QiZmcmIqx0Nb5CJv6gZXpglIldHm/9HRj1zP1SXC8sdTkz9IubGUFrnI2VLNwAlD0gYaUn96nFJgccsHJsyR8z63Q5ZGz1uYwgQMINtqVz1GSV5P7KaEK88ZOS4A80luIK4QeUPnANEM2Bp3H2dcL4Bt7ErpWOJJP/5rhQzYupp6F030yjvFXL33OFrknWKdtDeYLhar9iIbxZ4o5dHuHSpv+gOPaSZKeaYcGgioJ6mED/EWvlBTkyqRwuNubhZ356W6qhRRotM0o9nn3SnQY2Yed+tPn8oRwwJokLcQi5zHV5P8p7twV+QA9bi+TO4pGY30y2/I4CQrRLDW5p/Pgtjz//j4WYE3Yk4RoskhqHL09JAqx9MAQLT/uCPriX/0y8YVR9imiFydJoAGlOkLsfevaKLwPkvC3MFOHelU+ajtHzY05Xn3XM0LH3/v/zordAgRWy/5Dd/6wFJ8Wnvo1AumfNopbfvKhzJidZoYD06kXPT+257MCt+rvfJ+z70/n61vfdDWnE9lAMIGqnoiF3nbJhDE4xm2ch2YHL3vGNgyYnrmJN+SYVNPsl9oBYRbALxZLnW5emWE909aPghRleYnJPw8gnzUIm+ZdqcLu3pE1SNEbMtF1x7tiNlFG+a8iNq+RUair1icv7x2T63lMovh1/8q9nIeEJGrefs+8M9x+UgdhcvxUOc6MRGnjq1YxGypDwAeHuVtB8sfG/HTJQZI/0l2DD12nS9+v5QuxyYt4S+s2Lp5Z9fjv3RvvSF8ALBcbwgfkUcaDOuLSDqdTjOSHgIa03Zbeji8aKfbGEmbQJ0aRGPabgtdObULU8MhRNu2ObvnZYmcRxRgm9ZaD1NVBtp1TvtTANCmC74eMtQgUBeYJJcJnBBXu6+0KgGA4WvtDC9KSOB57lBEAU5lClq36TGgRWvtmABoMDU+ntNpPQTUBWZ7rugF4fybHF8XRwFQxysGvlcBRTNaaz0+HEGEda4eIobvZ/QY0KT1PAdQ56phznNK6UGgTk+5RZu3qfkhANTOztsmgGYVDNs5J81CgGo8nXb0lBk9hG1e2gTafK3GgCbtDQPAy/7UIJD2tB4C6rTy0gw0rSYBAJmp8GxtcYrhZbdoAkCjUkMgOVeNRs/AhstOclqNAs0qCH/yhwCQzALCMQaAFrxBAMiMMwB1esoCyE41DAA5f5gBRs4bixzCJmeMAUCTVkNAk54EgCZ/ngGAoUKEfqhsFTTZeQbgZX84LPNMMQDevAkAhjscOX9IKz3r1wEG8NCZG/oPMjw2Ugnb3gYAXAx3XYiUAP5FvQUAepQwgPIZAQDe6ypyCOMsnL3KgwBkIW5+K/TtR3VY9peV0LNm4SUQAHwBAPptA0Ddwn7FxZ7I9dOcWozAtAbC6JkMsiXhDl2MtEuLn+pSlQa2iw4AiKORjdr4QqH7hyTkGgDCipWLlZzq9wtl0XtKNPpSpX5R/iVgNiOyT4bUT1XAXCJ8MbeVN+TCWVENQL1dufn1yXufcQISJz6ItkBPXxfr4NmXWmJBC+NXK9dm4ksic+p/nuPTV334ceLJ1O17vhA9hITfXpruL1tcw3LVRMp8zsC1FgC/uh6eX0o4HtxBJMskV+FT9rV2CRzGGDGfcGa/mh4uW2paYGzNgpFdphL1u34A4Jp4AIsuDzWRy5TQFjk5s9wqkEVTg8hwb2VvQdwXK8C2wV/UQLKQIWzXACB/ueBa9AqFAZ9EFqEuLTy08jeSLU6bfMYWHpEFALTysnhySq4AitewyHr8t/0FlnxeIlT5heLEMQIA7LPKL1qYXJDhGV6BTS1Ajyaii1DyUARrU/fo4tGJX1b8Qrg7zEKprdUzcuEmJSpse3kI0Ad1JAqPyyL09EsMWDhjXjExReubDAC2h8j0dAg4WVHTGwDgT58GAJrfzgCQ98LhstGr1FCvYAJATutRYGeRAQBxwhdvZ7QaBOp0MB8my54Z5oeVMgAANKmpMI9mANAYvkcwUjxUu/FrE6SNfe71Ae37/8IA29CkInsWQF5cyKIkAHwgp02AGPI6AJWPcQD4TRRfuU4zxWGjTbsZNQS0hzxEY8Yf5kYucMNKVEaPW7xRBaEIZkM+tReHgHYdJvc73cIgSM4vRrGeWFd0PR0U2oIhoL1Q4UGjV1RFz0t7g8AWz9bKKWaDSiE4EyKsC+YLnnbGFmqS8+m0cocjWQ5v1EW3aFE1BLQrtlBFVcpTQ416ENiieZvvOcFwJQ5wpiq3eEqptLkgCn5BVUqLkYu8b2SAoo8sgGJ2Mb/NAjhYzgDQRX2pAJZ7q5ID+mHUqj9wLC1vVy6qPWOGYPue7J7NWnzV/TuDTAKE+Vj4FwA4q3T4LUlGiAXAi+qu1AZt0AZt0AZt0AZt0AZt0AZt0AZt0Bea2toGlz0is6YnkBq2FXmA1FMTy1yu0+U11D3afOevb9OjD1klztawD70K1RUKy/Vo1QWji42nK47T6HtTXnE1iPRh1VMDqCtOrjy5e7+bWToT0pYpLle3pA9u5W57uBSvuML0N4gLv7T94StJXnrIUT1jBOFZCKzlyMPS3tyXTnPZmF4dYQLLv3C6tPDh9IpSWtOypXXXwRacfijC2lMPOUuVXuXUgnzw0MQif0elhhczV0X4DlnlnX5sxRVOst+5+uIo63j4LBl7+LmU2917VtZDvqJWDgvddzCmhldDSE3Vr44BgG2TtAkY6bTNAPgmsYcZYEiLm/cYzXus57F8P4Dd+CzczmH3mabFKyU8tH0H8iEPttcrsZRqHHYvvi4/Xs3a1AXluqAEgPiFNr8EWnALxWGgzhtuU94YkFG+J0F1MbQojQVHL7Q8F8Mm2mEbAM2488MAGp1BmnEsAIarpyyA5ubH00ineWaItKUBpNMMoOn0MANp88dtk9omANKWHgIATkAMc3E3ZYmlKbB7N1rKAEg6a67CQy4xowkA7Rj/x8ujjXsUL5sA2XbB1Y2D4NDII+NQud0E6BBn3naz0oTyFADo3Q5AMrZfftUEqDYyKX2Fgaa1I0dM1GyZZAwkeSaVwhADSAcHSNowt78HMurGMsdqMqcBkh6ijUMAOZvm6ZFxc1lTc+8Phs4B0EfValJ6imbV6McAwIovlzQ5Ie+8XtLHAGkH+4Wm8DR3QNv5BZ+dBrZx5UySimkhn2tobbNSYmIc0KRx5yifYKiB9kn5NEAsCcDBRB6CMKAUl6htkROskQFxVQTiDNhuli3aZkK3sDMt+urQsr74XmnmpbcB4INu8XCEhPlH8SPOABD84a2jpNy8++JBCSCOVucgeRG7Jr2+nkb/6u6vklrgPXKx+3VS2TG95ySUadzpPqBGGRBHa7cgx2Cxa/sPku2YeUM98y2QuKE0mCGhZYkhKW/vd+OndM7CjaOY4CCn/enXJH4J+GBiWtU+sIb3t/S8A7lCr9N9CGm9hCydAgCiLgrV3QqULQBECdzQlGkZl+D0IJQgjHSoftzw/PuHIsPeblwrsVMguO2qH2kGqt/2LxUvQTki60Dj9q6jYLoSiLyjD3hvCK6/ipbdAp5ErcV2X3ydvQQQer27a3FrKM7+2l3uGjUj4cVDphwFoASMkx4ANgNowRniJeAXCsDbkhFXS6gHrTvx4wLoNy3oEgM8YkHLAUt170al/YF7vgDRALSWpMWUuH54T+WYJteAf0fi+kSJoYS3ocmCyi2Ny8gqxx+XQ2ixz9rswbD1OXwwkJEudnAASlW6wXQJAB9Ip/P82JK/odWis6ohlwB4kgMkCyAu4cDOhrup4vPJVWSKTNwAlCtBSKVxxWAuoD3CACWhFx+GtsSRLIEr14jwmCTvnbGwDdChWrVlko4kAGi+ogdUA9DJhCElauIz9/5FsbhlyFoAQAqEq0+AmZLUr6XNymoT0b/oGQWrWVQfzcLZ8tJRAD/CMWi+pNHOX9J+t4SfbC0IiSG1JiRcHQmA5tmW60ICEByAjlcaaiczr1/bc/joTNinGNKMrgGA2vFhgId/3ASJS4BwH6rP1S4dZxXuxRf9d4ndL2JaLPCYIdRV+GyZbkEiHxRZvhrCegLfcyY5q4y2DRcadh+QALRVWX5fAqS+7+Lui44Ip1Z5w6GeJAyAMQHMeAIATL/ykiifAF73Hh/T7F42GAyAgpxhpfuSIM2OAYAL8pCz/EsaQN/GMQA4+2B2sQRhTWlnd3d39+v6WAVOoqQkjBYALTXhm4zBTeAtyoC0DcgSA7kSNgZp3zwN4KSOQ5NtAAwhoMFDR0IMfbFbbDkGQhfl0+cVofZrAJq2KlGblpVu+WPsaEUSK8b0IampHycASH3bwxEmw0MjEgYQlwAU5yDHfAAomdimtQQkQ8k/Ddr5H1AT/BRqyxX9P0BeskibxX1ol5ogp6GhSz4AyZFNm9Bvk0oHaqhvymWoVVZ4OrOGnq6kNYzB450ANXxR4bhYkFKy0txlaTsAYj3YNLAE4S+YWtQoEtqKxnQmzgCUMJ6+WvoAkMmBIa9l+/CIvAT80H/Vfn/ievjt63nqFMeE1wO8XRq32nbq/oUZuVBkmBv5saPQsI2K8JLYaTJEJHR5Ygi29gFTMAbCcMOfN7FtyzOVTIQtOESzEubT9BDAFyI0exiYUXwIpE08JWEsrQTc221C23EUAHSZsFJ4LEiTLs+Nc4DU54nTchDQjn31zlj9y4p3ApfMiXGX9Fb04sCkB59dBSBa3HMt8vo977U4OEocfyIQAKvNWOH1cn1juoX4wIExpM3SIWidGGhtlNNQvp3uuaAv3i+XQjsaJN41Zd8GfD4AAHf2HGdMqjdONY6XTDENnMF0z0o8zOVE+Chon4UqoXzpfPBVwQHv9/1x/EECByzu6y6pyPsCUCld4tcWQsFrO6XEtT0Abu+Ecr2Di9ZP4rqQEuowMFNCUFnj18G5gAauu8qauC6gc/VGHhpAvzv9XjbbXzHp92RiPudMVhyjAue8s8LWD6QkLdD9gG7BSjxU3ZUP3QC6NQDssrSLboY73Vp+lXkArrXCg9r//37gAcDFg8d+8PlzCS7uYpVnl32w/1c4LIGZA7cBv3gUetefgTsCUD88NiNDA3n94Kkbe0YA6F1/ZvotAP1DGvA3AdcO/JK37JIVbyHVon+I+5oA8GYAzaRP4G6qTP7ge2RC35EAeWKnkZaxhPzz5D1kk7HglBZSa8sCYNsLZbiQGLUtIPw8bKEtzQAQoy1tAUBb2twoCm/QBm3QBm3QBm3QBm3QBm3QBm3Qfz76/6k9wAeCzaQIAAAAAElFTkSuQmCC"
+          alt="Arabtec Construction L.L.C."
+        />
+        <div style="display: flex; gap: 16px; align-items: center">
+          <button class="btn ghost hidden" id="adminBtn" style="display:none" type="button">
+            Submissions
+          </button>
+          <span class="code">ACLLC/HRHO-001</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap noprint" id="app">
+      <!-- FORM VIEW -->
+      <section id="vForm">
+        <div class="hero">
+          <p class="eyebrow">Head Office · Recruitment</p>
+          <h1>Employment Application Form<span class="dot">.</span></h1>
+          <p>
+            Please complete this form before your interview. It takes about 10
+            minutes. Fields marked * are required. HR will print it and attach
+            it to your CV.
+          </p>
+        </div>
+        <div id="form"></div>
+        <div id="formErr" class="status bad hidden" role="alert"></div>
+        <div class="actions">
+          <button class="btn primary" id="reviewBtn" type="button">
+            Review application
+          </button>
+          <span class="note"
+            >Your progress is kept on this device while you fill it in.</span
+          >
+        </div>
+      </section>
+
+      <!-- REVIEW VIEW -->
+      <section id="vReview" class="hidden">
+        <div class="hero">
+          <p class="eyebrow">Step 2 of 2 · Review</p>
+          <h1>Check your application<span class="dot">.</span></h1>
+          <p>
+            This is exactly what HR will print. Make sure everything is correct,
+            then submit.
+          </p>
+        </div>
+        <div id="msg"></div>
+        <div class="sheetwrap"><div id="sheetHost"></div></div>
+        <div class="actions">
+          <button class="btn primary" id="submitBtn" type="button">
+            Submit application
+          </button>
+          <button class="btn" id="backBtn" type="button">Back to edit</button>
+          <button class="btn" id="pdfBtn" type="button">Download PDF</button>
+        </div>
+      </section>
+
+      <!-- DONE VIEW -->
+      <section id="vDone" class="hidden">
+        <div class="hero">
+          <p class="eyebrow">Submitted</p>
+          <h1>Thank you<span class="dot">.</span></h1>
+          <p id="doneText">
+            Your application has been received. Please bring a copy of your CV
+            to the interview.
+          </p>
+        </div>
+        <div class="actions">
+          <button class="btn" id="doneAgain" type="button">
+            Start a new application</button
+          ><button class="btn" id="donePdf" type="button">Download PDF</button>
+        </div>
+      </section>
+
+      <!-- ADMIN VIEW -->
+      <section id="vAdmin" class="hidden">
+        <div class="hero">
+          <p class="eyebrow">HR · Submissions</p>
+          <h1>Applications received<span class="dot">.</span></h1>
+          <p>
+            Open an application to view the print-ready form and download it as
+            a PDF.
+          </p>
+        </div>
+        <div class="card list" id="adminList"></div>
+        <div class="actions">
+          <button class="btn" id="adminBack" type="button">Back to form</button>
+        </div>
+      </section>
+    </main>
+
+    <section class="band noprint">
+      <div class="wrap">
+        <p class="eyebrow">Questions about this form</p>
+        <p>career@arabtecegy.com</p>
+      </div>
+    </section>
+
+    <!-- print-only host -->
+    <div id="printHost"></div>
+
+    <script>
+      (function () {
+        "use strict";
+        const DRAFT_KEY = "arabtec_application_draft_v1";
+        const LIM = {
+          skills: 4,
+          languages: 4,
+          employment: 8,
+          training: 6,
+          relatives: 4,
+        };
+        const LEVELS = ["Excellent", "Good", "Fair", "Weak"];
+        const EDU = [
+          ["school", "School"],
+          ["vocational", "Vocational"],
+          ["college", "College / University"],
+          ["postgrad", "Post Graduate"],
+        ];
+        const DEG = {
+          school: ["Primary School Certificate", "Preparatory Certificate", "Thanaweya Amma (General Secondary)", "Azhar Secondary", "American Diploma", "IGCSE / British", "IB Diploma", "Other"],
+          vocational: ["Technical Secondary Diploma (3 years)", "Technical Secondary Diploma (5 years)", "Vocational Diploma", "Professional Certificate", "Other"],
+          college: ["Bachelor's Degree", "Other"],
+          postgrad: ["Postgraduate Diploma", "Master's Degree", "MBA", "PhD / Doctorate", "Other"],
+        };
+        const MARITAL = [
+          "Single",
+          "Married",
+          "Separated",
+          "Divorced",
+          "Widow(er)",
+        ];
+        const AVAIL = [
+          "Immediate",
+          "2 Weeks",
+          "3 Weeks",
+          "1 Month",
+          "2 Months",
+        ];
+
+        const blank = () => ({
+          position: ["", "", ""],
+          photo: "",
+          firstName: "",
+          lastName: "",
+          middleName: "",
+          nationality: "",
+          sex: "",
+          curAddress: "",
+          curPO: "",
+          curTel: "",
+          permAddress: "",
+          permPO: "",
+          permTel: "",
+          dob: "",
+          pob: "",
+          age: "",
+          marital: "",
+          children: "",
+          skills: [""],
+          languages: [
+            { lang: "", read: "", write: "", spoken: "" },
+            { lang: "", read: "", write: "", spoken: "" },
+          ],
+          computer: "",
+          employment: [
+            {
+              company: "",
+              tel: "",
+              position: "",
+              from: "",
+              to: "",
+              salary: "",
+              reason: "",
+            },
+            {
+              company: "",
+              tel: "",
+              position: "",
+              from: "",
+              to: "",
+              salary: "",
+              reason: "",
+            },
+          ],
+          education: Object.fromEntries(
+            EDU.map(([k]) => [
+              k,
+              { school: "", degree: "", years: "", graduated: "", awards: "" },
+            ]),
+          ),
+          training: [{ title: "", place: "", from: "", to: "" }],
+          relatives: "",
+          relList: [{ name: "", rel: "", position: "", dept: "" }],
+          heard: "",
+          firstTime: "",
+          prevApp: "",
+          availability: "",
+          declared: false,
+        });
+
+        let S = blank();
+        let view = "form",
+          current = null,
+          errors = {};
+
+        /* ---------- helpers ---------- */
+        const esc = (s) =>
+          String(s == null ? "" : s).replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[c],
+          );
+        const $ = (id) => document.getElementById(id);
+        const getP = (o, p) =>
+          p.split(".").reduce((a, k) => (a == null ? a : a[k]), o);
+        const setP = (o, p, v) => {
+          const ks = p.split(".");
+          const last = ks.pop();
+          const t = ks.reduce((a, k) => a[k], o);
+          t[last] = v;
+        };
+        const idOf = (p) => "f-" + p.replace(/\./g, "-");
+        const clone = (o) => JSON.parse(JSON.stringify(o));
+
+        function saveDraft() {
+          try {
+            const d = clone(S);
+            d.photo = "";
+            localStorage.setItem(DRAFT_KEY, JSON.stringify(d));
+          } catch (e) {}
+        }
+        function loadDraft() {
+          try {
+            const raw = localStorage.getItem(DRAFT_KEY);
+            if (!raw) return;
+            const d = JSON.parse(raw);
+            S = Object.assign(blank(), d);
+            S.education = Object.assign(blank().education, Object.fromEntries(Object.entries(d.education || {}).filter(([k]) => k in blank().education)));
+          } catch (e) {}
+        }
+        function calcAge(dob) {
+          if (!dob) return "";
+          const b = new Date(dob);
+          if (isNaN(b)) return "";
+          const n = new Date();
+          let a = n.getFullYear() - b.getFullYear();
+          const m = n.getMonth() - b.getMonth();
+          if (m < 0 || (m === 0 && n.getDate() < b.getDate())) a--;
+          return a >= 0 && a < 120 ? String(a) : "";
+        }
+
+        /* ---------- form builders ---------- */
+        function field(p, label, o) {
+          o = o || {};
+          const v = getP(S, p) || "";
+          const id = idOf(p);
+          const bad = errors[p];
+          const ctl = o.area
+            ? `<textarea id="${id}" data-p="${p}" rows="2" ${o.ph ? `placeholder="${esc(o.ph)}"` : ""}>${esc(v)}</textarea>`
+            : `<input id="${id}" data-p="${p}" type="${o.type || "text"}" value="${esc(v)}" ${o.ro ? "readonly" : ""} ${o.ph ? `placeholder="${esc(o.ph)}"` : ""} ${o.list ? `list="${o.list}"` : ""} ${o.max ? `max="${o.max}"` : ""} ${o.inputmode ? `inputmode="${o.inputmode}"` : ""} autocomplete="${o.ac || "off"}">`;
+          return `<div class="f ${bad ? "invalid" : ""} ${o.cls || ""}"><label for="${id}">${label}${o.req ? '<span class="rq"> *</span>' : ""}</label>${ctl}${bad ? `<span class="err">${esc(bad)}</span>` : ""}</div>`;
+        }
+        function opts(p, label, list, o) {
+          o = o || {};
+          const v = getP(S, p) || "";
+          const bad = errors[p];
+          return `<div class="f ${o.cls || ""}"><span class="lbl">${label}${o.req ? '<span class="rq"> *</span>' : ""}</span><div class="opts ${bad ? "invalid" : ""}" role="radiogroup" id="${idOf(p)}">${list.map((x) => `<label class="opt"><input type="radio" name="${p}" data-p="${p}" data-re="${o.re ? 1 : ""}" value="${esc(x)}" ${v === x ? "checked" : ""}><span>${esc(x)}</span></label>`).join("")}</div>${bad ? `<span class="err">${esc(bad)}</span>` : ""}</div>`;
+        }
+        function select(p, label, list) {
+          const v = getP(S, p) || "";
+          const id = idOf(p);
+          return `<div class="f"><label for="${id}">${label}</label><select id="${id}" data-p="${p}"><option value=""></option>${list.map((x) => `<option ${v === x ? "selected" : ""}>${esc(x)}</option>`).join("")}</select></div>`;
+        }
+        function head(eye, title) {
+          return `<div class="head"><p class="eyebrow">${eye}</p><h2>${title}<span class="dot">.</span></h2></div>`;
+        }
+        function itemHead(label, list, i) {
+          return `<div class="itemhead"><p class="eyebrow">${label}</p>${i > 0 || list > 1 ? `<button type="button" class="btn ghost" data-rm="${""}">Remove</button>` : ""}</div>`;
+        }
+
+        function buildForm() {
+          const h = [];
+          // 01 position + photo
+          h.push(`<div class="card">${head("01 · Position", "Position applied for")}
+    <div class="grid w2">
+      ${field("position.0", "1st choice", { req: 1 })}${field("position.1", "2nd choice")}${field("position.2", "3rd choice")}
+    </div>
+    <div class="photo" style="margin-top:32px">
+      <div class="box">${S.photo ? `<img src="${S.photo}" alt="Your photo">` : "Photo"}</div>
+      <div class="f"><span class="lbl">Personal photo (optional)</span><span class="note">A recent passport-style photo. It will appear in the top corner of the printed form.</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><label class="btn" style="cursor:pointer">Choose photo<input type="file" id="photoIn" accept="image/*" style="display:none"></label>${S.photo ? `<button type="button" class="btn ghost" id="photoRm">Remove</button>` : ""}</div></div>
+    </div></div>`);
+          // 02 personal
+          h.push(`<div class="card">${head("02 · Personal data", "Personal data")}
+    <div class="grid">
+      ${field("firstName", "First name", { req: 1, ac: "given-name" })}${field("middleName", "Middle name")}${field("lastName", "Last name", { req: 1, ac: "family-name" })}
+      ${field("nationality", "Nationality", { req: 1 })}
+      ${opts("sex", "Sex", ["Male", "Female"], { req: 1 })}
+    </div>
+    <div class="grid w2" style="margin-top:32px">
+      ${field("curAddress", "Current address", { area: 1, req: 1, cls: "span2" })}
+      ${field("curPO", "P.O. Box")}${field("curTel", "Tel. no.", { type: "tel", req: 1, inputmode: "tel", ac: "tel" })}
+      ${field("permAddress", "Permanent address", { area: 1, cls: "span2" })}
+      ${field("permPO", "P.O. Box")}${field("permTel", "Tel. no.", { type: "tel", inputmode: "tel" })}
+    </div>
+    <div class="grid" style="margin-top:32px">
+      ${field("dob", "Date of birth", { type: "date", req: 1, max: new Date().toISOString().slice(0, 10) })}
+      ${field("pob", "Place of birth")}
+      <div class="f"><label for="f-age">Age</label><input id="f-age" type="text" value="${esc(S.age)}" readonly></div>
+    </div>
+    <div class="grid" style="margin-top:32px">
+      ${opts("marital", "Marital status", MARITAL, { req: 1, cls: "span2" })}
+      ${field("children", "No. of children", { type: "text", inputmode: "numeric" })}
+    </div></div>`);
+          // 03 skills / languages / computer
+          h.push(`<div class="card">${head("03 · Skills", "Skills, languages and computer literacy")}
+    <p class="lbl" style="margin-bottom:16px">Special skills (if any)</p>
+    <div class="rowset">${S.skills.map((s, i) => `<div class="item" style="padding-top:${i ? 16 : 0}px;margin-top:${i ? 16 : 0}px">${field("skills." + i, "Skill " + (i + 1))}${S.skills.length > 1 ? `<button type="button" class="btn ghost" data-rm="skills:${i}" style="margin-top:8px">Remove</button>` : ""}</div>`).join("")}</div>
+    ${S.skills.length < LIM.skills ? `<button type="button" class="btn add" data-add="skills">Add a skill</button>` : ""}
+    <p class="lbl" style="margin:48px 0 16px">Languages / dialects</p>
+    <div class="rowset">${S.languages
+      .map(
+        (
+          l,
+          i,
+        ) => `<div class="item"><div class="itemhead"><p class="eyebrow">Language ${i + 1}</p>${S.languages.length > 1 ? `<button type="button" class="btn ghost" data-rm="languages:${i}">Remove</button>` : ""}</div>
+      <div class="grid">${field(`languages.${i}.lang`, "Language")}${select(`languages.${i}.read`, "Read", LEVELS)}${select(`languages.${i}.write`, "Write", LEVELS)}${select(`languages.${i}.spoken`, "Spoken", LEVELS)}</div></div>`,
+      )
+      .join("")}</div>
+    ${S.languages.length < LIM.languages ? `<button type="button" class="btn add" data-add="languages">Add a language</button>` : ""}
+    <div style="margin-top:48px">${opts("computer", "Computer literacy", ["Excellent", "Very good", "Good", "Fair", "Weak"])}</div></div>`);
+          // 04 employment
+          h.push(`<div class="card">${head("04 · Employment record", "Employment record")}
+    <p class="sub" style="margin:-16px 0 32px">Start with your present or latest employer. Add up to ${LIM.employment} entries.</p>
+    <div class="rowset">${S.employment
+      .map(
+        (
+          e,
+          i,
+        ) => `<div class="item"><div class="itemhead"><p class="eyebrow">Employer ${i + 1}</p>${S.employment.length > 1 ? `<button type="button" class="btn ghost" data-rm="employment:${i}">Remove</button>` : ""}</div>
+      <div class="grid w2">${field(`employment.${i}.company`, "Company name / address", { cls: "span2" })}${field(`employment.${i}.position`, "Position")}${field(`employment.${i}.tel`, "Tel. no.", { type: "tel", inputmode: "tel" })}</div>
+      <div class="grid" style="margin-top:16px">${field(`employment.${i}.from`, "From", { ph: "MM/YYYY" })}${field(`employment.${i}.to`, "To", { ph: "MM/YYYY or Present" })}${field(`employment.${i}.salary`, "Salary", { inputmode: "numeric" })}</div>
+      <div style="margin-top:16px">${field(`employment.${i}.reason`, "Reason for leaving")}</div></div>`,
+      )
+      .join("")}</div>
+    ${S.employment.length < LIM.employment ? `<button type="button" class="btn add" data-add="employment">Add an employer</button>` : ""}</div>`);
+          // 05 education
+          h.push(`<div class="card">${head("05 · Education", "Educational background")}
+    <p class="sub" style="margin:-16px 0 32px">Leave blank any level that does not apply.</p>
+    <div class="rowset">${EDU.map(
+      ([
+        k,
+        l,
+      ]) => `<div class="item"><div class="itemhead"><p class="eyebrow">${l}</p></div>
+      <div class="grid w2">${field(`education.${k}.school`, "Name and address of school", { cls: "span2" })}${select(`education.${k}.degree`, "Highest degree earned", DEG[k])}${field(`education.${k}.years`, "Inclusive years", { ph: "e.g. 2012 – 2017" })}${field(`education.${k}.graduated`, "Date graduated", { ph: "MM/YYYY" })}${field(`education.${k}.awards`, "Awards / honors received")}</div></div>`,
+    ).join("")}</div></div>`);
+          // 06 training
+          h.push(`<div class="card">${head("06 · Training", "Quality and safety trainings attended")}
+    <div class="rowset">${S.training
+      .map(
+        (
+          t,
+          i,
+        ) => `<div class="item"><div class="itemhead"><p class="eyebrow">Training ${i + 1}</p>${S.training.length > 1 ? `<button type="button" class="btn ghost" data-rm="training:${i}">Remove</button>` : ""}</div>
+      <div class="grid w2">${field(`training.${i}.title`, "Title of the training")}${field(`training.${i}.place`, "Place / location")}${field(`training.${i}.from`, "From", { ph: "MM/YYYY" })}${field(`training.${i}.to`, "To", { ph: "MM/YYYY" })}</div></div>`,
+      )
+      .join("")}</div>
+    ${S.training.length < LIM.training ? `<button type="button" class="btn add" data-add="training">Add a training</button>` : ""}</div>`);
+          // 07 other
+          h.push(`<div class="card">${head("07 · Other information", "Other information")}
+    ${opts("relatives", "Do you have relatives or friends employed in Arabtec Construction LLC?", ["Yes", "No"], { re: 1 })}
+    ${
+      S.relatives === "Yes"
+        ? `<div class="rowset" style="margin-top:32px">${S.relList
+            .map(
+              (
+                r,
+                i,
+              ) => `<div class="item"><div class="itemhead"><p class="eyebrow">Person ${i + 1}</p>${S.relList.length > 1 ? `<button type="button" class="btn ghost" data-rm="relList:${i}">Remove</button>` : ""}</div>
+      <div class="grid">${field(`relList.${i}.name`, "Name")}${field(`relList.${i}.rel`, "Relationship")}${field(`relList.${i}.position`, "Position")}${field(`relList.${i}.dept`, "Section / department")}</div></div>`,
+            )
+            .join("")}</div>
+      ${S.relList.length < LIM.relatives ? `<button type="button" class="btn add" data-add="relList">Add a person</button>` : ""}`
+        : ""
+    }
+    <div style="margin-top:48px">${field("heard", "How did you learn about Arabtec Construction LLC?", { list: "heardList" })}
+      <datalist id="heardList"><option>LinkedIn</option><option>Facebook</option><option>Company website</option><option>Referral from an employee</option><option>Recruitment agency</option><option>Job fair</option></datalist></div>
+    <div style="margin-top:32px">${opts("firstTime", "Is this your first time to apply in Arabtec Construction LLC?", ["Yes", "No"], { re: 1 })}</div>
+    ${S.firstTime === "No" ? `<div style="margin-top:16px">${field("prevApp", "Please specify the details of your first application and the results", { area: 1 })}</div>` : ""}
+    <div style="margin-top:48px">${opts("availability", "Availability", AVAIL, { req: 1 })}</div></div>`);
+          // declaration
+          h.push(`<div class="card">${head("08 · Declaration", "Declaration")}
+    <label class="check" id="declWrap"><input type="checkbox" id="f-declared" data-p="declared" ${S.declared ? "checked" : ""}><span>I hereby solemnly declare that the particulars of the above statement stated by me are true and correct to the best of my knowledge and belief. I also authorize investigation of all statements herein contained.</span></label>
+    ${errors.declared ? `<p class="err" style="margin:12px 0 0">${esc(errors.declared)}</p>` : ""}
+    <p class="note" style="margin:16px 0 0">You will sign the printed copy at the interview.</p></div>`);
+          $("form").innerHTML = h.join("");
+        }
+
+        /* ---------- state wiring ---------- */
+        function rerender() {
+          const y = window.scrollY;
+          buildForm();
+          window.scrollTo(0, y);
+        }
+        document.addEventListener("input", (e) => {
+          const t = e.target;
+          const p = t.dataset && t.dataset.p;
+          if (!p || t.type === "radio") return;
+          if (t.type === "checkbox") {
+            setP(S, p, t.checked);
+            delete errors[p];
+            saveDraft();
+            return;
+          }
+          setP(S, p, t.value);
+          if (errors[p]) {
+            delete errors[p];
+            const f = t.closest(".f");
+            if (f) {
+              f.classList.remove("invalid");
+              const er = f.querySelector(".err");
+              if (er) er.remove();
+            }
+          }
+          if (p === "dob") {
+            S.age = calcAge(t.value);
+            const a = $("f-age");
+            if (a) a.value = S.age;
+          }
+          saveDraft();
+        });
+        document.addEventListener("change", (e) => {
+          const t = e.target;
+          if (t.id === "photoIn" && t.files && t.files[0]) {
+            photo(t.files[0]);
+            return;
+          }
+          const p = t.dataset && t.dataset.p;
+          if (!p) return;
+          if (t.type === "radio") {
+            setP(S, p, t.value);
+            delete errors[p];
+            saveDraft();
+            if (t.dataset.re) {
+              rerender();
+            } else {
+              const g = t.closest(".opts");
+              if (g) {
+                g.classList.remove("invalid");
+                const er = g.parentElement.querySelector(".err");
+                if (er) er.remove();
+              }
+            }
+          } else if (t.tagName === "SELECT") {
+            setP(S, p, t.value);
+            saveDraft();
+          } else if (t.type === "date") {
+            S.age = calcAge(t.value);
+            const a = $("f-age");
+            if (a) a.value = S.age;
+          }
+        });
+        document.addEventListener("click", (e) => {
+          const a = e.target.closest("[data-add]");
+          if (a) {
+            const k = a.dataset.add;
+            const tpl = {
+              skills: "",
+              languages: { lang: "", read: "", write: "", spoken: "" },
+              employment: {
+                company: "",
+                tel: "",
+                position: "",
+                from: "",
+                to: "",
+                salary: "",
+                reason: "",
+              },
+              training: { title: "", place: "", from: "", to: "" },
+              relList: { name: "", rel: "", position: "", dept: "" },
+            }[k];
+            S[k].push(clone(tpl));
+            saveDraft();
+            rerender();
+            return;
+          }
+          const r = e.target.closest("[data-rm]");
+          if (r) {
+            const [k, i] = r.dataset.rm.split(":");
+            S[k].splice(+i, 1);
+            saveDraft();
+            rerender();
+            return;
+          }
+          if (e.target.id === "photoRm") {
+            S.photo = "";
+            rerender();
+          }
+        });
+
+        function photo(file) {
+          const rd = new FileReader();
+          rd.onload = () => {
+            const img = new Image();
+            img.onload = () => {
+              const m = 480;
+              const s = Math.min(1, m / Math.max(img.width, img.height));
+              const c = document.createElement("canvas");
+              c.width = Math.round(img.width * s);
+              c.height = Math.round(img.height * s);
+              c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+              S.photo = c.toDataURL("image/jpeg", 0.85);
+              rerender();
+            };
+            img.src = rd.result;
+          };
+          rd.readAsDataURL(file);
+        }
+
+        /* ---------- validation ---------- */
+        function validate() {
+          errors = {};
+          const R = "This field is required.";
+          const need = [
+            ["position.0"],
+            ["firstName"],
+            ["lastName"],
+            ["nationality"],
+            ["sex"],
+            ["curAddress"],
+            ["curTel"],
+            ["dob"],
+            ["marital"],
+            ["availability"],
+          ];
+          need.forEach(([p]) => {
+            if (!String(getP(S, p) || "").trim())
+              errors[p] =
+                p === "sex" || p === "marital" || p === "availability"
+                  ? "Please choose one."
+                  : R;
+          });
+          if (!S.declared)
+            errors.declared = "Please confirm the declaration to continue.";
+          return Object.keys(errors);
+        }
+
+        /* ---------- printable sheet ---------- */
+        function cb(on, l) {
+          return `<span class="cbw"><span class="cb${on ? " on" : ""}"></span>${esc(l)}</span>`;
+        }
+        function cell(lb, v, cs) {
+          return `<td colspan="${cs}"><div class="lb">${lb}</div><div class="vl">${esc(v)}</div></td>`;
+        }
+        function rowsOf(list, n, render) {
+          const out = [];
+          for (let i = 0; i < Math.max(n, list.length); i++)
+            out.push(render(list[i] || {}, i));
+          return out.join("");
+        }
+        function sheet(d, subDate) {
+          const pos = d.position || [];
+          const p1 = `<div class="page p1">
+    <div class="top"><div>
+      <img class="logo" src="data:image/png;base64,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" alt="Arabtec Construction L.L.C.">
+      <div class="title">EMPLOYMENT APPLICATION FORM</div>
+      <div class="pos"><span>POSITION APPLIED FOR:</span><span class="ln">1. ${esc(pos[0])}</span><span></span><span class="ln">2. ${esc(pos[1])}</span><span></span><span class="ln">3. ${esc(pos[2])}</span></div>
+    </div><div class="ph">${d.photo ? `<img src="${d.photo}" alt="">` : "picture"}</div></div>
+
+    <div class="sec">I. Personal data</div>
+    <table><colgroup>${'<col style="width:8.333%">'.repeat(12)}</colgroup>
+      <tr>${cell("First name", d.firstName, 3)}${cell("Last name", d.lastName, 3)}${cell("Middle name", d.middleName, 2)}${cell("Nationality", d.nationality, 3)}${cell("Sex", d.sex, 1)}</tr>
+      <tr>${cell("Current address", d.curAddress, 8)}${cell("P.O. Box", d.curPO, 2)}${cell("Tel. no.", d.curTel, 2)}</tr>
+      <tr>${cell("Permanent address", d.permAddress, 8)}${cell("P.O. Box", d.permPO, 2)}${cell("Tel. no.", d.permTel, 2)}</tr>
+      <tr>${cell("Date of birth", d.dob ? d.dob.split("-").reverse().join("/") : "", 4)}${cell("Place of birth", d.pob, 5)}${cell("Age", d.age, 3)}</tr>
+      <tr><td colspan="9"><div class="lb">Marital status</div><div style="margin-top:4px">${MARITAL.map((m) => cb(d.marital === m, m)).join("")}</div></td>${cell("No. of children", d.children, 3)}</tr>
+    </table>
+
+    <table style="margin-top:-1px"><colgroup><col style="width:30%"><col style="width:28%"><col style="width:14%"><col style="width:14%"><col style="width:14%"></colgroup>
+      <tr><th>Special skills (if any)</th><th>Languages / dialects</th><th>Read</th><th>Write</th><th>Spoken</th></tr>
+      ${rowsOf(d.languages || [], 4, (l, i) => `<tr><td class="r">${esc((d.skills || [])[i])}</td><td class="r">${esc(l.lang)}</td><td class="r">${esc(l.read)}</td><td class="r">${esc(l.write)}</td><td class="r">${esc(l.spoken)}</td></tr>`)}
+    </table>
+    <table style="margin-top:-1px"><tr><td><div class="lb">Computer literacy (please check)</div><div style="margin-top:4px">${["Excellent", "Very good", "Good", "Fair", "Weak"].map((m) => cb(d.computer === m, m)).join("")}</div></td></tr></table>
+
+    <div class="sec">II. Employment record <small>(start with the present or latest)</small></div>
+    <table><colgroup><col style="width:26%"><col style="width:11%"><col style="width:16%"><col style="width:9%"><col style="width:10%"><col style="width:10%"><col style="width:18%"></colgroup>
+      <tr><th>Company name / address</th><th>Tel. no.</th><th>Position</th><th>From</th><th>To</th><th>Salary</th><th>Reason for leaving</th></tr>
+      ${rowsOf(d.employment || [], 8, (e) => `<tr><td class="r" style="height:30px">${esc(e.company)}</td><td class="r">${esc(e.tel)}</td><td class="r">${esc(e.position)}</td><td class="r">${esc(e.from)}</td><td class="r">${esc(e.to)}</td><td class="r">${esc(e.salary)}</td><td class="r">${esc(e.reason)}</td></tr>`)}
+    </table>
+    <div class="foot"><span>page 1 of 2</span><span>ACLLC/HRHO-001</span></div></div>`;
+
+          const edu = d.education || {};
+          const p2 = `<div class="page">
+    <div class="sec" style="margin-top:0">III. Educational background</div>
+    <table><colgroup><col style="width:12%"><col style="width:28%"><col style="width:17%"><col style="width:14%"><col style="width:12%"><col style="width:17%"></colgroup>
+      <tr><th></th><th>Name &amp; address of school</th><th>Highest degree earned</th><th>Inclusive years</th><th>Date graduated</th><th>Awards / honors received</th></tr>
+      ${EDU.map(([k, l]) => {
+        const e = edu[k] || {};
+        return `<tr><td class="r" style="height:36px;font-size:9px">${l}</td><td class="r">${esc(e.school)}</td><td class="r">${esc(e.degree)}</td><td class="r">${esc(e.years)}</td><td class="r">${esc(e.graduated)}</td><td class="r">${esc(e.awards)}</td></tr>`;
+      }).join("")}
+    </table>
+
+    <div class="sec">IV. Quality and safety training/s attended</div>
+    <table><colgroup><col style="width:36%"><col style="width:28%"><col style="width:18%"><col style="width:18%"></colgroup>
+      <tr><th>Title of the training</th><th>Place / location</th><th>From</th><th>To</th></tr>
+      ${rowsOf(d.training || [], 6, (t) => `<tr><td class="r">${esc(t.title)}</td><td class="r">${esc(t.place)}</td><td class="r">${esc(t.from)}</td><td class="r">${esc(t.to)}</td></tr>`)}
+    </table>
+
+    <div class="sec">V. Other information</div>
+    <div class="q"><b>1. Do you have relatives / friends employed in Arabtec Construction LLC?</b> &nbsp; ${cb(d.relatives === "Yes", "Yes")}${cb(d.relatives === "No", "No")}</div>
+    ${
+      d.relatives === "Yes"
+        ? `<table style="margin-top:6px"><colgroup><col style="width:34%"><col style="width:22%"><col style="width:22%"><col style="width:22%"></colgroup>
+      <tr><th>Name</th><th>Relationship</th><th>Position</th><th>Section / department</th></tr>
+      ${rowsOf(d.relList || [], 3, (r) => `<tr><td class="r">${esc(r.name)}</td><td class="r">${esc(r.rel)}</td><td class="r">${esc(r.position)}</td><td class="r">${esc(r.dept)}</td></tr>`)}</table>`
+        : ""
+    }
+    <div class="q"><b>2. How did you learn about Arabtec Construction LLC?</b><div class="ans">${esc(d.heard)}</div></div>
+    <div class="q"><b>3. Is this your first time to apply in Arabtec Construction LLC?</b> &nbsp; ${cb(d.firstTime === "Yes", "Yes")}${cb(d.firstTime === "No", "No")}
+      ${d.firstTime === "No" ? `<div class="ans">${esc(d.prevApp)}</div>` : ""}</div>
+    <div class="q"><b>4. Availability:</b> &nbsp; ${AVAIL.map((a) => cb(d.availability === a, a)).join("")}</div>
+
+    <div class="decl">I hereby solemnly declare that the particulars of the above statement stated by me are true and correct to the best of my knowledge and belief. I also authorize investigation of all statements herein contained.</div>
+    <div class="sig"><div>Signature</div><div>Date</div></div>
+    ${subDate ? `<div style="margin-top:28px;font-size:8.5px;color:var(--muted)">Submitted online on ${esc(subDate)}</div>` : ""}
+    <div class="foot"><span>page 2 of 2</span><span>ACLLC/HRHO-001</span></div></div>`;
+          return `<div class="sheet" id="sheetEl">${p1}${p2}</div>`;
+        }
+
+        function fitSheet() {
+          const host = $("sheetHost");
+          const el = host.firstElementChild;
+          if (!el) return;
+          const w = host.parentElement.clientWidth - 32;
+          const z = Math.min(1, w / 794);
+          el.style.zoom = z;
+        }
+        window.addEventListener("resize", () => {
+          if (view === "review" || view === "adminView") fitSheet();
+        });
+
+        /* ---------- views ---------- */
+        function show(v) {
+          view = v;
+          ["vForm", "vReview", "vDone", "vAdmin"].forEach((id) =>
+            $(id).classList.add("hidden"),
+          );
+          $(
+            {
+              form: "vForm",
+              review: "vReview",
+              done: "vDone",
+              adminView: "vReview",
+              admin: "vAdmin",
+            }[v],
+          ).classList.remove("hidden");
+          window.scrollTo(0, 0);
+        }
+        function showMsg(kind, text) {
+          $("msg").innerHTML = text
+            ? `<div class="status ${kind}" role="status">${text}</div>`
+            : "";
+        }
+
+        let userCap = null,
+          downloads = null,
+          db = null,
+          canAdmin = false;
+        function stampDate() {
+          return new Date().toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+          });
+        }
+
+        async function makePdf(d, date) {
+          const holder = document.createElement("div");
+          holder.style.cssText =
+            "position:fixed;left:0;top:0;z-index:-1;opacity:0;pointer-events:none";
+          holder.innerHTML = sheet(d, date);
+          document.body.appendChild(holder);
+          try {
+            await (document.fonts && document.fonts.ready);
+            const el = holder.firstElementChild;
+            const blob = await html2pdf()
+              .set({
+                margin: 0,
+                image: { type: "jpeg", quality: 0.95 },
+                html2canvas: {
+                  scale: 2,
+                  useCORS: true,
+                  windowWidth: 794,
+                  scrollX: 0,
+                  scrollY: 0,
+                },
+                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+                pagebreak: { mode: ["css"], after: ".p1" },
+              })
+              .from(el)
+              .outputPdf("blob");
+            return blob;
+          } finally {
+            holder.remove();
+          }
+        }
+        function pdfName(d) {
+          return (
+            ("Arabtec-Application-" + (d.firstName || "") + "-" + (d.lastName || ""))
+              .replace(/[^A-Za-z0-9\u0600-\u06FF-]+/g, "-")
+              .replace(/-+/g, "-")
+              .replace(/-$/, "") + ".pdf"
+          );
+        }
+        function toText(d) {
+          const L = [];
+          const add = (k, v) => { if (v) L.push(k + ": " + v); };
+          add("Position 1", d.position[0]); add("Position 2", d.position[1]); add("Position 3", d.position[2]);
+          add("First name", d.firstName); add("Middle name", d.middleName); add("Last name", d.lastName);
+          add("Nationality", d.nationality); add("Sex", d.sex);
+          add("Current address", d.curAddress); add("Current P.O. Box", d.curPO); add("Current tel", d.curTel);
+          add("Permanent address", d.permAddress); add("Permanent P.O. Box", d.permPO); add("Permanent tel", d.permTel);
+          add("Date of birth", d.dob); add("Place of birth", d.pob); add("Age", d.age);
+          add("Marital status", d.marital); add("No. of children", d.children);
+          add("Special skills", d.skills.filter(Boolean).join("; "));
+          d.languages.forEach((l, i) => l.lang && add("Language " + (i + 1), [l.lang, "read " + (l.read || "-"), "write " + (l.write || "-"), "spoken " + (l.spoken || "-")].join(", ")));
+          add("Computer literacy", d.computer);
+          d.employment.forEach((e, i) => (e.company || e.position) && add("Employer " + (i + 1), [e.company, e.position, e.tel, (e.from || "") + " to " + (e.to || ""), "salary " + (e.salary || "-"), "reason: " + (e.reason || "-")].join(" | ")));
+          EDU.forEach(([k, l]) => { const e = d.education[k]; if (e && (e.school || e.degree)) add("Education - " + l, [e.school, e.degree, e.years, e.graduated, e.awards].filter(Boolean).join(" | ")); });
+          d.training.forEach((x, i) => x.title && add("Training " + (i + 1), [x.title, x.place, (x.from || "") + " to " + (x.to || "")].join(" | ")));
+          add("Relatives/friends at Arabtec", d.relatives);
+          if (d.relatives === "Yes") d.relList.forEach((r, i) => r.name && add("Relative " + (i + 1), [r.name, r.rel, r.position, r.dept].join(" | ")));
+          add("How they learned about Arabtec", d.heard);
+          add("First application", d.firstTime); add("Previous application details", d.prevApp);
+          add("Availability", d.availability);
+          return L.join("\n");
+        }
+        async function downloadPdf(d, date, btn) {
+          if (!downloads) {
+            showMsg(
+              "bad",
+              "PDF download isn't available in this view. ",
+            );
+            return;
+          }
+          const old = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = "Preparing PDF…";
+          try {
+            const blob = await makePdf(d, date);
+            const name =
+              (
+                "Arabtec-Application-" +
+                (d.firstName || "") +
+                "-" +
+                (d.lastName || "")
+              )
+                .replace(/[^A-Za-z0-9؀-ۿ-]+/g, "-")
+                .replace(/-+/g, "-")
+                .replace(/-$/, "") + ".pdf";
+            await downloads.save({ filename: name, data: blob });
+            showMsg("ok", "PDF ready. Print it and attach it to the CV.");
+          } catch (err) {
+            if (err && err.code === "declined") showMsg("", "");
+            else
+              showMsg("bad", "The PDF could not be created. Please try again.");
+          } finally {
+            btn.disabled = false;
+            btn.textContent = old;
+          }
+        }
+
+        $("reviewBtn").onclick = () => {
+          const bad = validate();
+          $("formErr").classList.add("hidden");
+          if (bad.length) {
+            rerender();
+            $("formErr").textContent =
+              "Please complete the " +
+              bad.length +
+              " highlighted " +
+              (bad.length > 1 ? "fields" : "field") +
+              " before continuing.";
+            $("formErr").classList.remove("hidden");
+            const first = document.querySelector(".invalid,#declWrap+.err");
+            if (first)
+              first.scrollIntoView({ block: "center", behavior: "smooth" });
+            return;
+          }
+          current = { d: clone(S), date: stampDate() };
+          $("sheetHost").innerHTML = sheet(current.d, "");
+          fitSheet();
+          showMsg(
+            "",
+            db
+              ? ""
+              : "<b>Online submission is not available in this view.</b> Download the PDF and send it to HR instead.",
+          );
+          $("submitBtn").classList.toggle("hidden", !db);
+          $("backBtn").textContent = "Back to edit";
+          show("review");
+          fitSheet();
+        };
+        $("backBtn").onclick = () => {
+          if (view === "adminView") { show("admin"); return; }
+          rerender();
+          show("form");
+        };
+        $("pdfBtn").onclick = (e) =>
+          downloadPdf(
+            current.d,
+            view === "adminView" ? current.date : "",
+            e.currentTarget,
+          );
+        $("donePdf").onclick = (e) =>
+          downloadPdf(current.d, current.date, e.currentTarget);
+        $("doneAgain").onclick = () => {
+          S = blank();
+          try {
+            localStorage.removeItem(DRAFT_KEY);
+          } catch (e) {}
+          errors = {};
+          buildForm();
+          show("form");
+        };
+        $("submitBtn").onclick = async (e) => {
+          const b = e.currentTarget;
+          b.disabled = true;
+          b.textContent = "Submitting…";
+          try {
+            const d = current.d;
+            const date = stampDate();
+            const blob = await makePdf(d, date);
+            const full = [d.firstName, d.middleName, d.lastName].filter(Boolean).join(" ");
+            const post = async (withPdf) => {
+              const fd = new FormData();
+              fd.append("access_key", "fd0dadcc-39f0-4bb1-a206-256a5d2cf678");
+              fd.append("subject", "New employment application: " + full + " (" + (d.position[0] || "") + ")");
+              fd.append("from_name", "Arabtec Application Form");
+              fd.append("name", full);
+              fd.append("position", (d.position || []).filter(Boolean).join(" / "));
+              fd.append("phone", d.curTel || "");
+              fd.append("nationality", d.nationality || "");
+              fd.append("availability", d.availability || "");
+              fd.append("message", toText(d));
+              if (withPdf) fd.append("attachment", blob, pdfName(d));
+              const r = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: { Accept: "application/json" },
+                body: fd,
+              });
+              let j = null;
+              try { j = await r.json(); } catch (_) {}
+              return !!(r.ok && j && j.success);
+            };
+            let ok = await post(true);
+            if (!ok) ok = await post(false);
+            if (!ok) throw new Error("send failed");
+            current.date = date;
+            try {
+              localStorage.removeItem(DRAFT_KEY);
+            } catch (_) {}
+            $("doneText").textContent =
+              "Your application has been sent to Arabtec HR. Please bring a copy of your CV to the interview.";
+            show("done");
+          } catch (err) {
+            showMsg(
+              "bad",
+              "Your application could not be sent. Please check your connection and try again, or download the PDF and email it to career@arabtecegy.com.",
+            );
+          } finally {
+            b.disabled = false;
+            b.textContent = "Submit application";
+          }
+        };
+
+        /* admin */
+        $("adminBtn").onclick = async () => {
+          show("admin");
+          const box = $("adminList");
+          box.innerHTML = '<p class="note">Loading…</p>';
+          try {
+            const snap = await db
+              .collection("applications")
+              .orderBy("submittedAt", "desc")
+              .limit(200)
+              .get();
+            if (snap.empty) {
+              box.innerHTML = '<p class="note">No applications yet.</p>';
+              return;
+            }
+            box.innerHTML = snap.docs
+              .map((s) => {
+                const d = s.data();
+                return `<div class="li"><div><b>${esc((d.firstName || "") + " " + (d.lastName || ""))}</b><div class="note">${esc(d.position && d.position[0])} · ${esc(d.submittedAt ? new Date(d.submittedAt).toLocaleString("en-GB") : "")}</div></div><button class="btn" type="button" data-open="${esc(s.id)}">Open</button></div>`;
+              })
+              .join("");
+            box._docs = Object.fromEntries(
+              snap.docs.map((s) => [s.id, s.data()]),
+            );
+          } catch (err) {
+            box.innerHTML =
+              '<p class="note">Submissions could not be loaded.</p>';
+          }
+        };
+        $("adminList").addEventListener("click", (e) => {
+          const b = e.target.closest("[data-open]");
+          if (!b) return;
+          const d = $("adminList")._docs[b.dataset.open];
+          if (!d) return;
+          current = {
+            d,
+            date: d.submittedAt
+              ? new Date(d.submittedAt).toLocaleDateString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                })
+              : "",
+          };
+          $("sheetHost").innerHTML = sheet(d, current.date);
+          showMsg("", "");
+          $("submitBtn").classList.add("hidden");
+          $("backBtn").textContent = "Back to list";
+          show("adminView");
+          fitSheet();
+        });
+        $("adminBack").onclick = () => show("form");
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && view === "adminView") show("admin");
+        });
+
+        /* ---------- init ---------- */
+        loadDraft();
+        S.age = calcAge(S.dob);
+        buildForm();
+        downloads = {
+          save: async ({ filename, data }) => {
+            const url = URL.createObjectURL(data);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 5000);
+            return { status: "saved" };
+          },
+        };
+        db = true;
+        
+      })();
+    </script>
+  </body>
+</html>
