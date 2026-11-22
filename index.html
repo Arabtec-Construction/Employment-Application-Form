@@ -815,11 +815,7 @@
           nationality: "",
           sex: "",
           curAddress: "",
-          curPO: "",
           curTel: "",
-          permAddress: "",
-          permPO: "",
-          permTel: "",
           dob: "",
           pob: "",
           age: "",
@@ -838,7 +834,6 @@
               position: "",
               from: "",
               to: "",
-              salary: "",
               reason: "",
             },
             {
@@ -847,7 +842,6 @@
               position: "",
               from: "",
               to: "",
-              salary: "",
               reason: "",
             },
           ],
@@ -860,10 +854,15 @@
           training: [{ title: "", place: "", from: "", to: "" }],
           relatives: "",
           relList: [{ name: "", rel: "", position: "", dept: "" }],
+          references: [
+            { name: "", position: "", company: "", phone: "" },
+            { name: "", position: "", company: "", phone: "" },
+          ],
           heard: "",
           firstTime: "",
           prevApp: "",
           availability: "",
+          noEmployment: false,
           declared: false,
         });
 
@@ -974,9 +973,7 @@
     </div>
     <div class="grid w2" style="margin-top:32px">
       ${field("curAddress", "Current address", { area: 1, req: 1, cls: "span2" })}
-      ${field("curPO", "P.O. Box")}${field("curTel", "Tel. no.", { type: "tel", req: 1, inputmode: "tel", ac: "tel" })}
-      ${field("permAddress", "Permanent address", { area: 1, cls: "span2" })}
-      ${field("permPO", "P.O. Box")}${field("permTel", "Tel. no.", { type: "tel", inputmode: "tel" })}
+      ${field("curTel", "Tel. no.", { type: "tel", req: 1, inputmode: "tel", ac: "tel" })}
     </div>
     <div class="grid" style="margin-top:32px">
       ${field("dob", "Date of birth", { type: "date", req: 1, max: new Date().toISOString().slice(0, 10) })}
@@ -1007,20 +1004,26 @@
           // 04 employment
           h.push(`<div class="card">${head("04 · Employment record", "Employment record")}
     <p class="sub" style="margin:-16px 0 32px">Start with your present or latest employer. Add up to ${LIM.employment} entries.</p>
-    <div class="rowset">${S.employment
+    <label class="check" style="margin-bottom:${S.noEmployment ? 0 : 24}px"><input type="checkbox" id="f-noEmployment" data-p="noEmployment" ${S.noEmployment ? "checked" : ""}><span>I have no previous employment (for example, a fresh graduate)</span></label>
+    ${S.noEmployment ? "" : `<div class="rowset">${S.employment
       .map(
         (
           e,
           i,
         ) => `<div class="item"><div class="itemhead"><p class="eyebrow">Employer ${i + 1}</p>${S.employment.length > 1 ? `<button type="button" class="btn ghost" data-rm="employment:${i}">Remove</button>` : ""}</div>
-      <div class="grid w2">${field(`employment.${i}.company`, "Company name / address", { cls: "span2" })}${field(`employment.${i}.position`, "Position")}${field(`employment.${i}.tel`, "Tel. no.", { type: "tel", inputmode: "tel" })}</div>
-      <div class="grid" style="margin-top:16px">${field(`employment.${i}.from`, "From", { ph: "MM/YYYY" })}${field(`employment.${i}.to`, "To", { ph: "MM/YYYY or Present" })}${field(`employment.${i}.salary`, "Salary", { inputmode: "numeric" })}</div>
+      <div class="grid w2">${field(`employment.${i}.company`, "Company name", { cls: "span2", req: i === 0 })}${field(`employment.${i}.position`, "Position")}${field(`employment.${i}.tel`, "Tel. no.", { type: "tel", inputmode: "tel" })}</div>
+      <div class="grid" style="margin-top:16px">${field(`employment.${i}.from`, "From", { ph: "MM/YYYY" })}${field(`employment.${i}.to`, "To", { ph: "MM/YYYY or Present" })}</div>
       <div style="margin-top:16px">${field(`employment.${i}.reason`, "Reason for leaving")}</div></div>`,
       )
       .join("")}</div>
-    ${S.employment.length < LIM.employment ? `<button type="button" class="btn add" data-add="employment">Add an employer</button>` : ""}</div>`);
+    ${S.employment.length < LIM.employment ? `<button type="button" class="btn add" data-add="employment">Add an employer</button>` : ""}`}</div>`);
+          // 05 references
+          h.push(`<div class="card">${head("05 · References", "References")}
+    <p class="sub" style="margin:-16px 0 32px">Please give at least one professional reference who knows your work.</p>
+    <div class="rowset">${S.references.map((r, i) => `<div class="item"><div class="itemhead"><p class="eyebrow">Reference ${i + 1}${i ? " (optional)" : ""}</p></div>
+      <div class="grid w2">${field(`references.${i}.name`, "Name", { req: i === 0 })}${field(`references.${i}.position`, "Position", { req: i === 0 })}${field(`references.${i}.company`, "Company", { req: i === 0 })}${field(`references.${i}.phone`, "Phone number", { type: "tel", inputmode: "tel", req: i === 0 })}</div></div>`).join("")}</div></div>`);
           // 05 education
-          h.push(`<div class="card">${head("05 · Education", "Educational background")}
+          h.push(`<div class="card">${head("06 · Education", "Educational background")}
     <p class="sub" style="margin:-16px 0 32px">Leave blank any level that does not apply.</p>
     <div class="rowset">${EDU.map(
       ([
@@ -1030,7 +1033,7 @@
       <div class="grid w2">${field(`education.${k}.school`, "Name and address of school", { cls: "span2" })}${select(`education.${k}.degree`, "Highest degree earned", DEG[k])}${field(`education.${k}.years`, "Inclusive years", { ph: "e.g. 2012 – 2017" })}${field(`education.${k}.graduated`, "Date graduated", { ph: "MM/YYYY" })}${field(`education.${k}.awards`, "Awards / honors received")}</div></div>`,
     ).join("")}</div></div>`);
           // 06 training
-          h.push(`<div class="card">${head("06 · Training", "Quality and safety trainings attended")}
+          h.push(`<div class="card">${head("07 · Training", "Quality and safety trainings attended")}
     <div class="rowset">${S.training
       .map(
         (
@@ -1042,7 +1045,7 @@
       .join("")}</div>
     ${S.training.length < LIM.training ? `<button type="button" class="btn add" data-add="training">Add a training</button>` : ""}</div>`);
           // 07 other
-          h.push(`<div class="card">${head("07 · Other information", "Other information")}
+          h.push(`<div class="card">${head("08 · Other information", "Other information")}
     ${opts("relatives", "Do you have relatives or friends employed in Arabtec Construction LLC?", ["Yes", "No"], { re: 1 })}
     ${
       S.relatives === "Yes"
@@ -1064,7 +1067,7 @@
     ${S.firstTime === "No" ? `<div style="margin-top:16px">${field("prevApp", "Please specify the details of your first application and the results", { area: 1 })}</div>` : ""}
     <div style="margin-top:48px">${opts("availability", "Availability", AVAIL, { req: 1 })}</div></div>`);
           // declaration
-          h.push(`<div class="card">${head("08 · Declaration", "Declaration")}
+          h.push(`<div class="card">${head("09 · Declaration", "Declaration")}
     <label class="check" id="declWrap"><input type="checkbox" id="f-declared" data-p="declared" ${S.declared ? "checked" : ""}><span><span class="rq">* </span>I hereby solemnly declare that the particulars of the above statement stated by me are true and correct to the best of my knowledge and belief. I also authorize investigation of all statements herein contained.</span></label>
     ${errors.declared ? `<p class="err" style="margin:12px 0 0">${esc(errors.declared)}</p>` : ""}</div>`);
           $("form").innerHTML = h.join("");
@@ -1083,7 +1086,9 @@
           if (t.type === "checkbox") {
             setP(S, p, t.checked);
             delete errors[p];
+            if (p === "noEmployment") delete errors["employment.0.company"];
             saveDraft();
+            if (p === "noEmployment") rerender();
             return;
           }
           setP(S, p, t.value);
@@ -1147,7 +1152,6 @@
                 position: "",
                 from: "",
                 to: "",
-                salary: "",
                 reason: "",
               },
               training: { title: "", place: "", from: "", to: "" },
@@ -1192,9 +1196,10 @@
         }
 
         /* ---------- validation ---------- */
-        const REQUIRED = ["position.0","firstName","lastName","nationality","sex","curAddress","curTel","dob","marital","availability"];
+        const REQUIRED = ["position.0","firstName","lastName","nationality","sex","curAddress","curTel","dob","marital","availability","references.0.name","references.0.position","references.0.company","references.0.phone"];
         function missingRequired(d) {
           const m = REQUIRED.filter((p) => !String(getP(d, p) || "").trim());
+          if (!d.noEmployment && !String(getP(d, "employment.0.company") || "").trim()) m.push("employment.0.company");
           if (!d.declared) m.push("declared");
           return m;
         }
@@ -1236,8 +1241,7 @@
     <div class="sec">I. Personal data</div>
     <table><colgroup>${'<col style="width:8.333%">'.repeat(12)}</colgroup>
       <tr>${cell("First name", d.firstName, 3)}${cell("Last name", d.lastName, 3)}${cell("Middle name", d.middleName, 2)}${cell("Nationality", d.nationality, 3)}${cell("Sex", d.sex, 1)}</tr>
-      <tr>${cell("Current address", d.curAddress, 8)}${cell("P.O. Box", d.curPO, 2)}${cell("Tel. no.", d.curTel, 2)}</tr>
-      <tr>${cell("Permanent address", d.permAddress, 8)}${cell("P.O. Box", d.permPO, 2)}${cell("Tel. no.", d.permTel, 2)}</tr>
+      <tr>${cell("Current address", d.curAddress, 8)}${cell("Tel. no.", d.curTel, 2)}</tr>
       <tr>${cell("Date of birth", d.dob ? d.dob.split("-").reverse().join("/") : "", 4)}${cell("Place of birth", d.pob, 5)}${cell("Age", d.age, 3)}</tr>
       <tr><td colspan="9"><div class="lb">Marital status</div><div style="margin-top:4px">${MARITAL.map((m) => cb(d.marital === m, m)).join("")}</div></td>${cell("No. of children", d.children, 3)}</tr>
     </table>
@@ -1249,9 +1253,9 @@
     <table style="margin-top:-1px"><tr><td><div class="lb">Computer literacy (please check)</div><div style="margin-top:4px">${["Excellent", "Very good", "Good", "Fair", "Weak"].map((m) => cb(d.computer === m, m)).join("")}</div></td></tr></table>
 
     <div class="sec">II. Employment record <small>(start with the present or latest)</small></div>
-    <table><colgroup><col style="width:26%"><col style="width:11%"><col style="width:16%"><col style="width:9%"><col style="width:10%"><col style="width:10%"><col style="width:18%"></colgroup>
-      <tr><th>Company name / address</th><th>Tel. no.</th><th>Position</th><th>From</th><th>To</th><th>Salary</th><th>Reason for leaving</th></tr>
-      ${rowsOf(d.employment || [], 8, (e) => `<tr><td class="r" style="height:30px">${esc(e.company)}</td><td class="r">${esc(e.tel)}</td><td class="r">${esc(e.position)}</td><td class="r">${esc(e.from)}</td><td class="r">${esc(e.to)}</td><td class="r">${esc(e.salary)}</td><td class="r">${esc(e.reason)}</td></tr>`)}
+    <table><colgroup><col style="width:30%"><col style="width:12%"><col style="width:18%"><col style="width:10%"><col style="width:10%"><col style="width:20%"></colgroup>
+      <tr><th>Company name</th><th>Tel. no.</th><th>Position</th><th>From</th><th>To</th><th>Reason for leaving</th></tr>
+      ${rowsOf(d.noEmployment ? [{ company: "No previous employment" }] : d.employment || [], 8, (e) => `<tr><td class="r" style="height:30px">${esc(e.company)}</td><td class="r">${esc(e.tel)}</td><td class="r">${esc(e.position)}</td><td class="r">${esc(e.from)}</td><td class="r">${esc(e.to)}</td><td class="r">${esc(e.reason)}</td></tr>`)}
     </table>
     <div class="foot"><span>page 1 of 2</span><span>AR/HR/EAF/001</span></div></div>`;
 
@@ -1285,6 +1289,12 @@
     <div class="q"><b>3. Is this your first time to apply in Arabtec Construction LLC?</b> &nbsp; ${cb(d.firstTime === "Yes", "Yes")}${cb(d.firstTime === "No", "No")}
       ${d.firstTime === "No" ? `<div class="ans">${esc(d.prevApp)}</div>` : ""}</div>
     <div class="q"><b>4. Availability:</b> &nbsp; ${AVAIL.map((a) => cb(d.availability === a, a)).join("")}</div>
+
+    <div class="sec">VI. References</div>
+    <table><colgroup><col style="width:28%"><col style="width:24%"><col style="width:28%"><col style="width:20%"></colgroup>
+      <tr><th>Name</th><th>Position</th><th>Company</th><th>Phone number</th></tr>
+      ${rowsOf((d.references || []).filter((r) => r.name || r.company || r.phone || r.position), 2, (r) => `<tr><td class="r">${esc(r.name)}</td><td class="r">${esc(r.position)}</td><td class="r">${esc(r.company)}</td><td class="r">${esc(r.phone)}</td></tr>`)}
+    </table>
 
     <div class="decl">I hereby solemnly declare that the particulars of the above statement stated by me are true and correct to the best of my knowledge and belief. I also authorize investigation of all statements herein contained.</div>
     <div class="sig"><div>Signature</div><div>Date</div></div>
@@ -1384,18 +1394,18 @@
           add("Position 1", d.position[0]); add("Position 2", d.position[1]); add("Position 3", d.position[2]);
           add("First name", d.firstName); add("Middle name", d.middleName); add("Last name", d.lastName);
           add("Nationality", d.nationality); add("Sex", d.sex);
-          add("Current address", d.curAddress); add("Current P.O. Box", d.curPO); add("Current tel", d.curTel);
-          add("Permanent address", d.permAddress); add("Permanent P.O. Box", d.permPO); add("Permanent tel", d.permTel);
+          add("Current address", d.curAddress); add("Current tel", d.curTel);
           add("Date of birth", d.dob); add("Place of birth", d.pob); add("Age", d.age);
           add("Marital status", d.marital); add("No. of children", d.children);
           add("Special skills", d.skills.filter(Boolean).join("; "));
           d.languages.forEach((l, i) => l.lang && add("Language " + (i + 1), [l.lang, "read " + (l.read || "-"), "write " + (l.write || "-"), "spoken " + (l.spoken || "-")].join(", ")));
           add("Computer literacy", d.computer);
-          d.employment.forEach((e, i) => (e.company || e.position) && add("Employer " + (i + 1), [e.company, e.position, e.tel, (e.from || "") + " to " + (e.to || ""), "salary " + (e.salary || "-"), "reason: " + (e.reason || "-")].join(" | ")));
+          if (d.noEmployment) add("Employment", "No previous employment"); else d.employment.forEach((e, i) => (e.company || e.position) && add("Employer " + (i + 1), [e.company, e.position, e.tel, (e.from || "") + " to " + (e.to || ""), "reason: " + (e.reason || "-")].join(" | ")));
           EDU.forEach(([k, l]) => { const e = d.education[k]; if (e && (e.school || e.degree)) add("Education - " + l, [e.school, e.degree, e.years, e.graduated, e.awards].filter(Boolean).join(" | ")); });
           d.training.forEach((x, i) => x.title && add("Training " + (i + 1), [x.title, x.place, (x.from || "") + " to " + (x.to || "")].join(" | ")));
           add("Relatives/friends at Arabtec", d.relatives);
           if (d.relatives === "Yes") d.relList.forEach((r, i) => r.name && add("Relative " + (i + 1), [r.name, r.rel, r.position, r.dept].join(" | ")));
+          (d.references || []).forEach((r, i) => (r.name || r.company) && add("Reference " + (i + 1), [r.name, r.position, r.company, r.phone].join(" | ")));
           add("How they learned about Arabtec", d.heard);
           add("First application", d.firstTime); add("Previous application details", d.prevApp);
           add("Availability", d.availability);
