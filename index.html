@@ -986,7 +986,7 @@
           $("reviewBtn").classList.toggle("hidden", !last);
         }
         function stepOf(p) {
-          const el = document.getElementById(p === "cert" ? "f-cert" : idOf(p));
+          const el = document.getElementById(p === "cert" ? "f-cert" : p === "photo" ? "f-photo" : idOf(p));
           const st = el && el.closest("[data-step]");
           return st ? +st.dataset.step : 0;
         }
@@ -1050,8 +1050,8 @@
     </div>
     <div class="photo" style="margin-top:32px">
       <div class="box">${S.photo ? `<img src="${S.photo}" alt="Your photo">` : "Photo"}</div>
-      <div class="f"><span class="lbl">Personal photo (optional)</span><span class="note">A recent passport-style photo. It will appear in the top corner of the printed form.</span>
-      <div style="display:flex;gap:8px;flex-wrap:wrap"><label class="btn" style="cursor:pointer">Choose photo<input type="file" id="photoIn" accept="image/*" style="display:none"></label>${S.photo ? `<button type="button" class="btn ghost" id="photoRm">Remove</button>` : ""}</div></div>
+      <div class="f ${errors.photo ? "invalid" : ""}" id="f-photo"><span class="lbl">Personal photo<span class="rq"> *</span></span><span class="note">A recent passport-style photo. It will appear in the top corner of the printed form.</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><label class="btn" style="cursor:pointer">Choose photo<input type="file" id="photoIn" accept="image/*" style="display:none"></label>${S.photo ? `<button type="button" class="btn ghost" id="photoRm">Remove</button>` : ""}</div>${errors.photo ? `<span class="err">${esc(errors.photo)}</span>` : ""}</div>
     </div></div>`);
           // 02 personal
           h.push(`<div class="card">${head("02 · Personal data", "Personal data")}
@@ -1288,6 +1288,7 @@
               c.height = Math.round(img.height * s);
               c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
               S.photo = c.toDataURL("image/jpeg", 0.85);
+              delete errors.photo;
               rerender();
             };
             img.src = rd.result;
@@ -1304,6 +1305,7 @@
             if (!String(getP(d, "employment.0.company") || "").trim()) m.push("employment.0.company");
             REF_REQ.forEach((p) => { if (!String(getP(d, p) || "").trim()) m.push(p); });
           }
+          if (!d.photo) m.push("photo");
           if (!cert) m.push("cert");
           if (!d.declared) m.push("declared");
           return m;
@@ -1312,7 +1314,9 @@
           errors = {};
           missingRequired(S).forEach((p) => {
             errors[p] =
-              p === "cert"
+              p === "photo"
+                ? "Please upload your personal photo."
+                : p === "cert"
                 ? "Please upload your graduation certificate."
                 : p === "declared"
                 ? "Please confirm the declaration to continue."
