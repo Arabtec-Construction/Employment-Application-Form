@@ -1496,6 +1496,26 @@
               .replace(/-$/, "") + ".pdf"
           );
         }
+        const per = (a, b) => (a || b ? (a || "?") + " to " + (b || "?") : "");
+        function rowData(d) {
+          const j = (a) => a.filter(Boolean).join(" | ");
+          const none = (v) => (v == null ? "" : String(v).replace(/\s+/g, " ").trim());
+          return {
+            position1: none(d.position[0]), position2: none(d.position[1]), position3: none(d.position[2]),
+            fullName: [d.firstName, d.middleName, d.lastName].filter(Boolean).join(" "),
+            nationality: none(d.nationality), sex: none(d.sex), address: none(d.curAddress), phone: none(d.curTel),
+            dob: none(d.dob), age: none(d.age), pob: none(d.pob), marital: none(d.marital), children: none(d.children),
+            skills: (d.skills || []).filter(Boolean).join("; "),
+            languages: (d.languages || []).filter((l) => l.lang).map((l) => j([l.lang, "read " + (l.read || "-"), "write " + (l.write || "-"), "spoken " + (l.spoken || "-")])).join("\n"),
+            computer: none(d.computer),
+            employment: d.noEmployment ? "No previous employment" : (d.employment || []).filter((e) => e.company || e.position).map((e) => j([e.company, e.position, e.tel, per(e.from, e.to), e.reason])).join("\n"),
+            education: EDU.map(([k, l]) => { const e = d.education[k]; return e && (e.school || e.degree) ? l + ": " + j([e.school, e.degree, e.years, e.graduated, e.awards]) : ""; }).filter(Boolean).join("\n"),
+            training: (d.training || []).filter((x) => x.title).map((x) => j([x.title, x.place, per(x.from, x.to)])).join("\n"),
+            relatives: d.relatives === "Yes" ? "Yes: " + (d.relList || []).filter((r) => r.name).map((r) => j([r.name, r.rel, r.position, r.dept])).join("; ") : none(d.relatives),
+            references: (d.references || []).filter((r) => r.name || r.company).map((r) => j([r.name, r.position, r.company, r.phone])).join("\n"),
+            heard: none(d.heard), firstTime: none(d.firstTime), prevApp: none(d.prevApp), availability: none(d.availability),
+          };
+        }
         function toText(d) {
           const L = [];
           const add = (k, v) => { if (v) L.push(k + ": " + v); };
@@ -1509,9 +1529,9 @@
           d.languages.forEach((l, i) => l.lang && add("Language " + (i + 1), [l.lang, "read " + (l.read || "-"), "write " + (l.write || "-"), "spoken " + (l.spoken || "-")].join(", ")));
           add("Computer literacy", d.computer);
           add("Graduation certificate", cert ? cert.name + " (attached)" : "");
-          if (d.noEmployment) add("Employment", "No previous employment"); else d.employment.forEach((e, i) => (e.company || e.position) && add("Employer " + (i + 1), [e.company, e.position, e.tel, (e.from || "") + " to " + (e.to || ""), "reason: " + (e.reason || "-")].join(" | ")));
+          if (d.noEmployment) add("Employment", "No previous employment"); else d.employment.forEach((e, i) => (e.company || e.position) && add("Employer " + (i + 1), [e.company, e.position, e.tel, per(e.from, e.to), "reason: " + (e.reason || "-")].join(" | ")));
           EDU.forEach(([k, l]) => { const e = d.education[k]; if (e && (e.school || e.degree)) add("Education - " + l, [e.school, e.degree, e.years, e.graduated, e.awards].filter(Boolean).join(" | ")); });
-          d.training.forEach((x, i) => x.title && add("Training " + (i + 1), [x.title, x.place, (x.from || "") + " to " + (x.to || "")].join(" | ")));
+          d.training.forEach((x, i) => x.title && add("Training " + (i + 1), [x.title, x.place, per(x.from, x.to)].join(" | ")));
           add("Relatives/friends at Arabtec", d.relatives);
           if (d.relatives === "Yes") d.relList.forEach((r, i) => r.name && add("Relative " + (i + 1), [r.name, r.rel, r.position, r.dept].join(" | ")));
           (d.references || []).forEach((r, i) => (r.name || r.company) && add("Reference " + (i + 1), [r.name, r.position, r.company, r.phone].join(" | ")));
@@ -1690,6 +1710,7 @@
                     filename: pdfName(d),
                     pdf: await toB64(blob),
                     cert: cert ? { name: cert.name, type: cert.type, data: cert.data } : null,
+                    row: rowData(d),
                   }),
                 });
                 const t = await r.text();
